@@ -1,0 +1,585 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>迭代器和生成器 · 常成的个人笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        <meta name="identifier" content="9787121324758" scheme="ISBN">
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="object.html" />
+    
+    
+    <link rel="prev" href="../" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2" data-path="generator.html">
+            
+                <a href="generator.html">
+            
+                    
+                    迭代器和生成器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="object.html">
+            
+                <a href="object.html">
+            
+                    
+                    对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="class.html">
+            
+                <a href="class.html">
+            
+                    
+                    类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="instance.html">
+            
+                <a href="instance.html">
+            
+                    
+                    继承
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="thunk.html">
+            
+                <a href="thunk.html">
+            
+                    
+                    Thunk
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >迭代器和生成器</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <!--
+ * @Author: cc
+ * @LastEditTime: 2020-12-18 16:42:34
+-->
+<!--
+ * @Author: your name
+ * @Date: 2020-03-11 10:51:58
+ * @LastEditTime: 2020-12-05 12:12:40
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /webNotes/web/es6/iterator.md
+ -->
+<h3 id="&#x8FED;&#x4EE3;&#x5668;iterable">&#x8FED;&#x4EE3;&#x5668;(Iterable)</h3>
+<h4 id="&#x6982;&#x8FF0;">&#x6982;&#x8FF0;</h4>
+<ol>
+<li>&#x8FED;&#x4EE3;&#x4E4B;&#x524D;&#x9700;&#x8981;&#x5B9E;&#x73B0;&#x77E5;&#x9053;&#x5982;&#x4F55;&#x4F7F;&#x7528;&#x6570;&#x636E;&#x7ED3;&#x6784;,&#x4E0D;&#x9002;&#x7528;&#x4E8E;&#x6240;&#x6709;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;</li>
+<li>&#x904D;&#x5386;&#x987A;&#x5E8F;&#x5E76;&#x4E0D;&#x662F;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x56FA;&#x6709;&#x7684;&#xFF0C;&#x4E0D;&#x9002;&#x7528;&#x4E8E;&#x5177;&#x6709;&#x9690;&#x5F0F;&#x987A;&#x5E8F;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;</li>
+<li>&#x53EF;&#x8FED;&#x4EE3;&#x6570;&#x636E;&#x7C7B;&#x578B;<code>&#x5B57;&#x7B26;&#x4E32;</code>&#xFF0C;<code>&#x6570;&#x7EC4;</code>&#xFF0C;<code>&#x6620;&#x5C04;</code>&#xFF0C;<code>&#x96C6;&#x5408;</code>&#xFF0C;<code>arguments&#x5BF9;&#x8C61;</code>&#xFF0C;<code>NodeList&#x5BF9;&#x8C61;</code></li>
+<li>&#x5B9E;&#x9645;&#x7F16;&#x5199;,&#x4E0D;&#x9700;&#x8981;&#x663E;&#x5F0F;&#x4F7F;&#x7528;<code>Iterator</code>&#xFF0C;&#x56E0;&#x4E3A;<code>for-of&#x5FAA;&#x73AF;</code>,<code>&#x6570;&#x7EC4;&#x89E3;&#x6784;</code>,<code>&#x6269;&#x5C55;&#x8FD0;&#x7B97;&#x7B26;</code>,<code>Array.from</code>,<code>map/set</code>&#xFF0C;<code>map</code>&#x65B9;&#x6CD5;&#x7B49;&#x90FD;&#x53EF;&#x4EE5;&#x63A5;&#x53D7;&#x7684;&#x53EF;&#x8FED;&#x4EE3;&#x5BF9;&#x8C61;</li>
+<li>&#x8FED;&#x4EE3;&#x5668;&#x7684;&#x539F;&#x7406;&#x5176;&#x5B9E;&#x662F;&#x8C03;&#x7528;Symbol.iterator&#x65B9;&#x6CD5;&#xFF0C;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x53EF;&#x8FED;&#x4EE3;&#x7684;&#x5BF9;&#x8C61;</li>
+</ol>
+<pre><code class="lang-javaScript"> <span class="hljs-comment">// it&#x6B64;&#x65F6;&#x4E3A;&#x4E00;&#x4E2A;&#x8FED;&#x4EE3;&#x5668;(iterator)</span>
+  <span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
+  <span class="hljs-keyword">let</span> it = arr[<span class="hljs-built_in">Symbol</span>.iterator]()
+  <span class="hljs-keyword">let</span> current = it.next()
+  <span class="hljs-keyword">while</span> (!current.done) {
+    <span class="hljs-built_in">console</span>.log(current.value)
+    current = it.next()
+  }
+</code></pre>
+<p>NodeList&#x5BF9;&#x8C61;&#x4E5F;&#x652F;&#x6301;&#x8FED;&#x4EE3;&#x5668;&#x904D;&#x5386;</p>
+<pre><code class="lang-javaScript">    <span class="hljs-keyword">let</span> a = <span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">&apos;div&apos;</span>)
+    <span class="hljs-keyword">let</span> current = [...a]
+</code></pre>
+<p>&#x7C7B;&#x6570;&#x7EC4;&#x5BF9;&#x8C61;&#xFF1A;&#x7ED9;&#x5BF9;&#x8C61;&#x589E;&#x52A0;Symbol.iterator&#x65B9;&#x6CD5;&#xFF0C;&#x56E0;&#x4E3A;&#x5BF9;&#x8C61;&#x9ED8;&#x8BA4;&#x4E0D;&#x53EF;&#x4EE5;&#x904D;&#x5386;&#xFF0C;&#x6240;&#x4EE5;&#x501F;&#x7528;Array&#x539F;&#x578B;&#x94FE;&#x7684;&#x65B9;&#x6CD5;</p>
+<pre><code class="lang-javaScript">  <span class="hljs-keyword">let</span> c = {
+    <span class="hljs-number">0</span>: <span class="hljs-string">&apos;a&apos;</span>,
+    <span class="hljs-number">1</span>: <span class="hljs-string">&apos;c&apos;</span>,
+    length: <span class="hljs-number">2</span>,
+    [<span class="hljs-built_in">Symbol</span>.iterator]: <span class="hljs-built_in">Array</span>.prototype[<span class="hljs-built_in">Symbol</span>.iterator]
+  }
+
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">of</span> c) {
+    <span class="hljs-built_in">console</span>.log(i)  <span class="hljs-comment">// a c</span>
+  }
+</code></pre>
+<p>&#x8986;&#x76D6;&#x539F;&#x751F;&#x7684;iterator&#x7684;&#x884C;&#x4E3A;</p>
+<ul>
+<li><p><code>&#x4EFB;&#x610F;&#x5BF9;&#x8C61;&#x7684;Symbol.iterator&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x7B49;&#x4E8E;&#x8BE5;&#x5BF9;&#x8C61;&#x7684;&#x904D;&#x5386;&#x5668;&#x7684;&#x751F;&#x6210;&#x51FD;&#x6570;&#xFF0C;&#x8C03;&#x7528;&#x8BE5;&#x51FD;&#x6570;&#x4F1A;&#x8FD4;&#x56DE;&#x8BE5;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x4E2A;&#x904D;&#x5386;&#x5668;&#x5BF9;&#x8C61;</code></p>
+</li>
+<li><p>&#x8FD9;&#x91CC;&#x4F7F;&#x7528;new String&#x56E0;&#x4E3A;&#x8981;&#x7528;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#xFF0C;&#x800C;&#x4E0D;&#x80FD;&#x4F7F;&#x7528;&#x539F;&#x59CB;&#x7C7B; let str = &apos;123&apos;,&#x56E0;&#x4E3A;&#x4E00;&#x4E2A;&#x662F;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#xFF0C;&#x4E00;&#x4E2A;&#x662F;&#x539F;&#x59CB;&#x7C7B;&#x578B;&#xFF0C;&#x539F;&#x59CB;&#x7C7B;&#x578B;&#x5B58;&#x5728;&#x5185;&#x5B58;&#x6808;&#x5F53;&#x4E2D;&#xFF0C;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x5B58;&#x5728;&#x5185;&#x5B58;&#x5806;&#x5F53;&#x4E2D;</p>
+</li>
+</ul>
+<p>&#x91CD;&#x5199;&#x751F;&#x6210;&#x5668;</p>
+<pre><code class="lang-javaScript">  <span class="hljs-keyword">let</span> str = <span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>(<span class="hljs-string">&apos;123&apos;</span>)
+  <span class="hljs-built_in">console</span>.log([...str])
+  str[<span class="hljs-built_in">Symbol</span>.iterator] = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> {
+      next: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.first) {
+          <span class="hljs-keyword">this</span>.first = <span class="hljs-literal">false</span>
+          <span class="hljs-keyword">return</span> {
+            value: <span class="hljs-string">&apos;bye&apos;</span>,
+            done: <span class="hljs-literal">false</span>
+          }
+        } <span class="hljs-keyword">else</span> {
+          <span class="hljs-keyword">return</span> {
+            value: <span class="hljs-literal">undefined</span>,
+            done: <span class="hljs-literal">true</span>
+          }
+        }
+      },
+      first: <span class="hljs-literal">true</span>
+    }
+  }
+  <span class="hljs-built_in">console</span>.log([...str]) <span class="hljs-comment">// bye</span>
+</code></pre>
+<p>&#x4F7F;&#x5BF9;&#x8C61;&#x652F;&#x6301;&#x751F;&#x6210;&#x5668;</p>
+<pre><code class="lang-javaScript">
+  <span class="hljs-keyword">let</span> obj = {}
+
+  obj[<span class="hljs-built_in">Symbol</span>.iterator] = <span class="hljs-function"><span class="hljs-keyword">function</span>* (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">3</span>;
+  }
+
+  <span class="hljs-built_in">console</span>.log([...obj])  <span class="hljs-comment">// [1,2,3]</span>
+</code></pre>
+<p>Iterator&#x7684;&#x5B9E;&#x73B0;</p>
+<pre><code class="lang-javaScript">  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Iterator</span> (<span class="hljs-params">arr</span>) </span>{
+  <span class="hljs-keyword">let</span> a = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">return</span> {
+    next () {
+      <span class="hljs-keyword">let</span> result = a &lt; arr.length ? {
+        value: arr[a++],
+        done: <span class="hljs-literal">false</span>
+      } : {
+          value: <span class="hljs-literal">undefined</span>,
+          done: <span class="hljs-literal">true</span>
+        }
+      <span class="hljs-keyword">return</span> result
+    }
+  }
+}
+<span class="hljs-keyword">let</span> a = Iterator([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
+
+<span class="hljs-built_in">console</span>.log(a.next().value)  <span class="hljs-comment">// 1</span>
+<span class="hljs-built_in">console</span>.log(a.next().value)  <span class="hljs-comment">// 2</span>
+<span class="hljs-built_in">console</span>.log(a.next().value)  <span class="hljs-comment">// 3</span>
+<span class="hljs-built_in">console</span>.log(a.next().value)  <span class="hljs-comment">// 4</span>
+</code></pre>
+<p>&#x81EA;&#x5B9A;&#x4E49;&#x8FED;&#x4EE3;&#x5668;</p>
+<pre><code class="lang-javaScript">   <span class="hljs-comment">// &#x901A;&#x8FC7;&#x95ED;&#x5305;&#x8FD4;&#x56DE;&#x8FED;&#x4EE3;&#x5668;</span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> </span>{
+  <span class="hljs-keyword">constructor</span>(limit) {
+    <span class="hljs-keyword">this</span>.limit = limit
+  }
+  [<span class="hljs-built_in">Symbol</span>.iterator] () {
+    <span class="hljs-keyword">let</span> count = <span class="hljs-number">1</span>,
+      limit = <span class="hljs-keyword">this</span>.limit;
+    <span class="hljs-keyword">return</span> {
+      next () {
+        <span class="hljs-keyword">if</span> (count &lt;= limit) {
+          <span class="hljs-keyword">return</span> {
+            value: count++,
+            done: <span class="hljs-literal">false</span>
+          }
+        } <span class="hljs-keyword">else</span> {
+          <span class="hljs-keyword">return</span> {
+            value: <span class="hljs-literal">undefined</span>,
+            done: <span class="hljs-literal">true</span>
+          }
+        }
+      }
+    }
+  }
+}
+
+<span class="hljs-keyword">let</span> counter = <span class="hljs-keyword">new</span> Counter(<span class="hljs-number">4</span>)
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">of</span> counter) { 
+  <span class="hljs-built_in">console</span>.log(i)  <span class="hljs-comment">// 1 2 3 4</span>
+}
+</code></pre>
+<p>&#x8FED;&#x4EE3;&#x5668;&#x7EC8;&#x6B62;&#x53EF;&#x4EE5;&#x8BB0;&#x5F55;&#x72B6;&#x6001;&#x7EE7;&#x7EED;&#x6267;&#x884C;</p>
+<pre><code class="lang-javaScript">
+<span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+
+<span class="hljs-keyword">let</span> iterator = arr[<span class="hljs-built_in">Symbol</span>.iterator]()
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">of</span> iterator) {
+  <span class="hljs-built_in">console</span>.log(i)  <span class="hljs-comment">// 1</span>
+  <span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">break</span>
+  }
+}
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">of</span> iterator) {
+  <span class="hljs-built_in">console</span>.log(i)  <span class="hljs-comment">//2 ,3</span>
+}
+</code></pre>
+<h3 id="&#x751F;&#x6210;&#x5668;generator">&#x751F;&#x6210;&#x5668;(generator)</h3>
+<p><code>yield&#x8868;&#x8FBE;&#x5F0F;</code></p>
+<ol>
+<li><p>&#x9047;&#x5230;yield&#x8868;&#x8FBE;&#x5F0F;&#xFF0C;&#x5C31;&#x6682;&#x505C;&#x6267;&#x884C;&#x540E;&#x9762;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x5E76;&#x5C06;&#x7D27;&#x8DDF;&#x5728;yield&#x540E;&#x9762;&#x7684;&#x90A3;&#x4E2A;&#x8868;&#x8FBE;&#x5F0F;&#xFF0C;&#x4F5C;&#x4E3A;&#x8FD4;&#x56DE;&#x5BF9;&#x8C61;&#x7684;&#x503C;</p>
+</li>
+<li><p>&#x4E0B;&#x4E00;&#x6B21;&#x8C03;&#x7528;next&#x65B9;&#x6CD5;&#xFF0C;&#x518D;&#x7EE7;&#x7EED;&#x5F80;&#x4E0B;&#x6267;&#x884C;&#xFF0C;&#x76F4;&#x5230;&#x9047;&#x5230;&#x4E0B;&#x4E00;&#x4E2A;yield&#x8868;&#x8FBE;&#x5F0F;&#x3002;</p>
+</li>
+<li><p>&#x5982;&#x679C;&#x6CA1;&#x6709;&#x9047;&#x5230;&#x65B0;&#x7684;yield&#x8868;&#x8FBE;&#x5F0F;&#x5C31;&#x4E00;&#x76F4;&#x8FD0;&#x884C;&#x5230;&#x51FD;&#x6570;&#x7ED3;&#x675F;&#xFF0C;&#x76F4;&#x5230;return&#x8BED;&#x53E5;&#x4E3A;&#x6B62;&#xFF0C;&#x5E76;&#x5C06;return&#x8BED;&#x53E5;&#x540E;&#x9762;&#x7684;&#x8868;&#x8FBE;&#x5F0F;&#xFF0C;&#x4F5C;&#x4E3A;&#x8FD4;&#x56DE;&#x5BF9;&#x8C61;&#x7684;value&#x5C5E;&#x6027;&#x503C;</p>
+</li>
+<li><p>&#x5982;&#x679C;&#x8BE5;&#x51FD;&#x6570;&#x6CA1;&#x6709;return&#x8BED;&#x53E5;&#xFF0C;&#x5219;&#x8FD4;&#x56DE;&#x7684;&#x5BF9;&#x8C61;&#x7684;value&#x5C5E;&#x6027;&#x503C;&#x4E3A;undefined</p>
+</li>
+</ol>
+<ul>
+<li>&#x751F;&#x6210;&#x5668;&#x51FD;&#x6570;&#x6267;&#x884C;&#x540E;&#xFF0C;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x904D;&#x5386;&#x5668;&#x5BF9;&#x8C61;&#xFF0C;&#x8BE5;&#x5BF9;&#x8C61;&#x4E5F;&#x5177;&#x6709;<code>Symbol.iterator</code>&#x5C5E;&#x6027;&#xFF0C;&#x6267;&#x884C;&#x540E;&#x8FD4;&#x56DE;&#x81EA;&#x8EAB;</li>
+</ul>
+<pre><code class="lang-javaScript">    <span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">gen</span> (<span class="hljs-params"></span>) </span>{ }
+
+    <span class="hljs-keyword">let</span> g = gen()
+
+    <span class="hljs-built_in">console</span>.log(g[<span class="hljs-built_in">Symbol</span>.iterator]() === g)  <span class="hljs-comment">//true</span>
+</code></pre>
+<pre><code class="lang-javaScript">   <span class="hljs-comment">// &#x751F;&#x6210;&#x5668;</span>
+   <span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">generatorFn</span>(<span class="hljs-params"></span>)</span>{
+     <span class="hljs-built_in">console</span>.log(<span class="hljs-number">123</span>)
+     <span class="hljs-keyword">yield</span> <span class="hljs-string">&apos;123&apos;</span>
+   }
+   <span class="hljs-keyword">let</span> result = generatorFn() <span class="hljs-comment">// &#x8FED;&#x4EE3;&#x5668;</span>
+   result.next()   <span class="hljs-comment">// &#x8FD9;&#x91CC;&#x8F93;&#x51FA;123 &#x540C;&#x65F6;&#x6267;&#x884C;&#x8FED;&#x4EE3;&#x5668;</span>
+
+   <span class="hljs-comment">// &#x4EA7;&#x751F;&#x53EF;&#x8FED;&#x4EE3;&#x5BF9;&#x8C61;</span>
+  <span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">Iterato</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">yield</span>* [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+    <span class="hljs-keyword">yield</span>* [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]
+  }
+  <span class="hljs-keyword">let</span> a = Iterato()
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">of</span> a) {
+    <span class="hljs-built_in">console</span>.log(i)  <span class="hljs-comment">// 1,2,3,4,5,6</span>
+  }
+
+
+  <span class="hljs-comment">// &#x6700;&#x6709;&#x7528;&#x7684;&#x9012;&#x5F52;&#x64CD;&#x4F5C;</span>
+  <span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">Times</span> (<span class="hljs-params">n</span>) </span>{
+    <span class="hljs-keyword">if</span> (n &gt; <span class="hljs-number">0</span>) {
+      <span class="hljs-keyword">yield</span>* Times(n - <span class="hljs-number">1</span>)
+      <span class="hljs-keyword">yield</span> n - <span class="hljs-number">1</span>
+    }
+  }
+
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">of</span> Times(<span class="hljs-number">5</span>)) {
+    <span class="hljs-built_in">console</span>.log(i)  <span class="hljs-comment">// 0 1 2 3 4</span>
+  }
+
+
+  <span class="hljs-comment">// &#x63D0;&#x524D;&#x7EC8;&#x6B62;&#x751F;&#x6210;&#x5668;</span>
+  <span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">generatorFn</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">yield</span> <span class="hljs-string">&apos;1&apos;</span>;
+    <span class="hljs-keyword">yield</span> <span class="hljs-string">&apos;2&apos;</span>;
+    <span class="hljs-keyword">yield</span> <span class="hljs-string">&apos;3&apos;</span>;
+  }
+  <span class="hljs-keyword">let</span> f = generatorFn()
+
+  <span class="hljs-built_in">console</span>.log(f.next())  <span class="hljs-comment">// {value:1,done:false}</span>
+  <span class="hljs-built_in">console</span>.log(f.return(<span class="hljs-number">4</span>))  <span class="hljs-comment">//  {value:4,done:true}</span>
+</code></pre>
+<p><code>Generator.prototype.throw()</code></p>
+<p>throw()&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x5728;&#x751F;&#x6210;&#x5668;&#x5185;&#x90E8;&#x4E2D;&#x6355;&#x83B7;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x751F;&#x6210;&#x5668;&#x5916;&#x90E8;&#x6355;&#x83B7;&#xFF0C;&#x5982;&#x679C;&#x5185;&#x90E8;&#x5916;&#x90E8;&#x90FD;&#x65E0;try/catch&#x65B9;&#x6CD5;&#x5219;&#x62A5;&#x9519;</p>
+<p>throw()&#x65B9;&#x6CD5;&#x629B;&#x51FA;&#x7684;&#x9519;&#x8BEF;&#x8981;&#x88AB;&#x5185;&#x90E8;&#x6355;&#x83B7;&#xFF0C;&#x524D;&#x63D0;&#x662F;&#x8981;&#x6267;&#x884C;&#x4E00;&#x6B21;next&#x65B9;&#x6CD5;</p>
+<p><code>&#x6267;&#x884C;throw()&#x65B9;&#x6CD5;&#x4F1A;&#x9644;&#x5E26;&#x6267;&#x884C;&#x4E0B;&#x4E00;&#x6761;yield&#x8868;&#x8FBE;&#x5F0F;</code></p>
+<p>&#x4E00;&#x65E6;Generator&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#x4E2D;&#x629B;&#x51FA;&#x9519;&#x8BEF;&#xFF0C;&#x4E14;&#x6CA1;&#x6709;&#x5185;&#x90E8;&#x6355;&#x83B7;&#xFF0C;Generator&#x5C31;&#x4F1A;&#x8FDB;&#x5165;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#x7684;&#x72B6;&#x6001;</p>
+<pre><code class="lang-javaScript">    <span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">generFn</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">yield</span> <span class="hljs-number">123</span>
+      } <span class="hljs-keyword">catch</span> (error) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;&#x5185;&#x90E8;&#x6355;&#x83B7;&apos;</span>,error)  <span class="hljs-comment">// &#x5185;&#x90E8;&#x6355;&#x83B7; a</span>
+      }
+    }
+    <span class="hljs-keyword">let</span> a = generFn()
+    a.next()
+    a.throw(<span class="hljs-string">&apos;a&apos;</span>)
+</code></pre>
+<p><code>Generator.return()</code></p>
+<p>return()&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x643A;&#x5E26;&#x53C2;&#x6570;&#xFF0C;&#x4E00;&#x65E6;&#x6267;&#x884C;&#x751F;&#x6210;&#x5668;&#x8FDB;&#x5165;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#x7684;&#x72B6;&#x6001;</p>
+<p><code>yield* &#x8868;&#x8FBE;&#x5F0F;</code></p>
+<p>&#x5728;&#x5F53;&#x524D;&#x7684;&#x751F;&#x6210;&#x5668;&#x5F53;&#x4E2D;&#x6267;&#x884C;&#x53E6;&#x4E00;&#x4E2A;&#x751F;&#x6210;&#x5668;&#xFF0C;&#x7C7B;&#x4F3C;&#x4E8E;&#x89E3;&#x6784;</p>
+<pre><code class="lang-javaScript">  <span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">foo</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">2</span>;
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">boo</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">yield</span>* foo()
+  }
+
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i <span class="hljs-keyword">of</span> boo()){
+    <span class="hljs-built_in">console</span>.log(i)  <span class="hljs-comment">// 0 1 2</span>
+  }
+</code></pre>
+<p>&#x4EFB;&#x4F55;&#x6570;&#x636E;&#x53EA;&#x8981;&#x6709;Iterator&#x63A5;&#x53E3;&#x5C31;&#x53EF;&#x4EE5;&#x88AB;yield* &#x904D;&#x5386;</p>
+<pre><code class="lang-javaScript">  <span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">foo</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">yield</span>* [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]
+  }
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i <span class="hljs-keyword">of</span> foo()){
+    <span class="hljs-built_in">console</span>.log(i)  <span class="hljs-comment">// 1 2 3</span>
+  }
+</code></pre>
+<p>yield* &#x7248;&#x672C;&#x7684;&#x6570;&#x7EC4;&#x6241;&#x5E73;&#x5316;</p>
+<pre><code class="lang-javaScript">  <span class="hljs-function"><span class="hljs-keyword">function</span> *<span class="hljs-title">foo</span>(<span class="hljs-params">array</span>)</span>{
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">Array</span>.isArray(array)){
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;array.length;i++){
+      <span class="hljs-keyword">let</span> item = array[i]
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">Array</span>.isArray(item)){
+          <span class="hljs-keyword">yield</span>* foo(item)
+        }<span class="hljs-keyword">else</span>{
+          <span class="hljs-keyword">yield</span> item
+        }
+    }
+    }
+  }
+  <span class="hljs-keyword">let</span> a = foo([<span class="hljs-number">1</span>,[<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>]])
+  <span class="hljs-built_in">console</span>.log([...a])  <span class="hljs-comment">// [ 1, 2, 3, 4, 5, 6, 7, 8 ]</span>
+</code></pre>
+<p>&#x751F;&#x6210;&#x5668;&#x5B9E;&#x73B0;&#x6590;&#x6CE2;&#x90A3;&#x9532;&#x6570;&#x5217;</p>
+<pre><code class="lang-javaScript">  <span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">fibonacci</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">let</span> [prev,cur] = [<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]
+    <span class="hljs-keyword">for</span>(;;){
+      <span class="hljs-keyword">yield</span> cur;
+      [prev,cur] = [cur,prev+cur]
+    }
+  }
+
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i <span class="hljs-keyword">of</span> fibonacci()){
+      <span class="hljs-keyword">if</span>(i &gt; <span class="hljs-number">500</span>) <span class="hljs-keyword">break</span>;
+       <span class="hljs-built_in">console</span>.log(i)
+  }
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../" class="navigation navigation-prev " aria-label="Previous page: 目录">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="object.html" class="navigation navigation-next " aria-label="Next page: 对象">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"迭代器和生成器","level":"1.2","depth":1,"next":{"title":"对象","level":"1.3","depth":1,"path":"docs/object.md","ref":"docs/object.md","articles":[]},"previous":{"title":"目录","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["highlight","livereload"],"styles":{"symbol":"./css/app.css"},"pluginsConfig":{"highlight":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"9787121324758","variables":{},"title":"常成的个人笔记","links":{"sharing":{"all":null,"facebook":null,"google":null,"twitter":null,"weibo":null}},"gitbook":"*","description":"个人笔记","extension":null},"file":{"path":"docs/generator.md","mtime":"2020-12-18T08:42:35.827Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-12-18T07:14:47.160Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
