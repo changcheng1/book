@@ -1,0 +1,431 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>继承 · 常成的个人笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        <meta name="identifier" content="9787121324758" scheme="ISBN">
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="thunk.html" />
+    
+    
+    <link rel="prev" href="class.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    迭代器与生成器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="object.html">
+            
+                <a href="object.html">
+            
+                    
+                    对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="class.html">
+            
+                <a href="class.html">
+            
+                    
+                    类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4" data-path="instance.html">
+            
+                <a href="instance.html">
+            
+                    
+                    继承
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="thunk.html">
+            
+                <a href="thunk.html">
+            
+                    
+                    Thunk
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >继承</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <!--
+ * @Author: cc
+ * @LastEditTime: 2020-12-02 15:40:43
+-->
+<h2 id="js&#x7684;&#x516D;&#x79CD;&#x7EE7;&#x627F;">Js&#x7684;&#x516D;&#x79CD;&#x7EE7;&#x627F;</h2>
+<p>&#x4E00;.&#x539F;&#x578B;&#x94FE;&#x7EE7;&#x627F;</p>
+<p>&#x7279;&#x70B9;&#xFF1A;&#x56E0;&#x4E3A;SubType.prototype&#x76F4;&#x63A5;&#x8BBE;&#x7F6E;&#x4E3A;SuperType&#x51FD;&#x6570;&#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x8FD9;&#x6837;&#x4E00;&#x6765;&#xFF0C;SubType&#x751F;&#x6210;&#x5B9E;&#x4F8B;&#x4E0D;&#x4EC5;&#x80FD;&#x83B7;&#x53D6;SuperType&#x5B9E;&#x4F8B;&#x4E2D;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x8FD8;&#x80FD;&#x4E0E;SuperType.prototype&#x6302;&#x4E0A;&#x94A9;</p>
+<p>&#x7F3A;&#x70B9;&#xFF1A;1.&#x65B0;&#x5B9E;&#x4F8B;&#x65E0;&#x6CD5;&#x5411;&#x7236;&#x7C7B;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4F20;&#x53C2; 
+2.&#x7EE7;&#x627F;&#x5355;&#x4E00; 
+3.&#x6240;&#x6709;&#x7684;&#x5B9E;&#x4F8B;&#x5C5E;&#x6027;&#x548C;&#x65B9;&#x6CD5;&#x90FD;&#x662F;&#x901A;&#x7528;&#x7684;,&#x65E0;&#x6CD5;&#x5B9E;&#x73B0;&#x5C5E;&#x6027;&#x548C;&#x65B9;&#x6CD5;&#x7684;&#x79C1;&#x6709;</p>
+<pre><code class="lang-javaScript">
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">SuperType</span>(<span class="hljs-params"></span>) </span>{ 
+ <span class="hljs-keyword">this</span>.colors = [<span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;blue&quot;</span>, <span class="hljs-string">&quot;green&quot;</span>]; 
+} 
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">SubType</span>(<span class="hljs-params"></span>) </span>{} 
+<span class="hljs-comment">// &#x7EE7;&#x627F; SuperType </span>
+SubType.prototype = <span class="hljs-keyword">new</span> SuperType(); 
+
+<span class="hljs-keyword">let</span> instance1 = <span class="hljs-keyword">new</span> SubType(); 
+instance1.colors.push(<span class="hljs-string">&quot;black&quot;</span>); 
+<span class="hljs-built_in">console</span>.log(instance1.colors); <span class="hljs-comment">// &quot;red,blue,green,black&quot; </span>
+
+<span class="hljs-keyword">let</span> instance2 = <span class="hljs-keyword">new</span> SubType(); 
+<span class="hljs-built_in">console</span>.log(instance2.colors); <span class="hljs-comment">// &quot;red,blue,green,black&quot;</span>
+</code></pre>
+<p> &#x4E8C;.&#x501F;&#x7528;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7EE7;&#x627F;</p>
+<p>&#x7279;&#x70B9;&#xFF1A;&#x53EF;&#x4EE5;&#x5411;&#x7236;&#x7C7B;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4F20;&#x53C2;&#xFF0C;&#x7528;call&#x6216;&#x8005;apply&#x5C06;&#x7236;&#x7C7B;&#x6784;&#x9020;&#x51FD;&#x6570;&#x5F15;&#x5165;&#x5B50;&#x7C7B;&#x51FD;&#x6570;&#xFF08;&#x5728;&#x5B50;&#x7C7B;&#x51FD;&#x6570;&#x4E2D;&#x505A;&#x4E86;&#x7236;&#x7C7B;&#x51FD;&#x6570;&#x7684;&#x81EA;&#x6267;&#x884C;&#xFF08;&#x590D;&#x5236;&#xFF09;&#xFF09;,&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x5C5E;&#x6027;&#x7684;&#x79C1;&#x6709;</p>
+<p>&#x7F3A;&#x70B9;&#xFF1A;&#x65E0;&#x6CD5;&#x7EE7;&#x627F;&#x539F;&#x578B;&#x94FE;&#x5C5E;&#x6027;</p>
+<pre><code class="lang-javaScript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">SuperType</span>(<span class="hljs-params"></span>) </span>{ 
+ <span class="hljs-keyword">this</span>.colors = [<span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;blue&quot;</span>, <span class="hljs-string">&quot;green&quot;</span>]; 
+} 
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">SubType</span>(<span class="hljs-params"></span>) </span>{ 
+  <span class="hljs-comment">// &#x7EE7;&#x627F; SuperType </span>
+  SuperType.call(<span class="hljs-keyword">this</span>); 
+} 
+<span class="hljs-keyword">let</span> instance1 = <span class="hljs-keyword">new</span> SubType(); 
+instance1.colors.push(<span class="hljs-string">&quot;black&quot;</span>); 
+<span class="hljs-built_in">console</span>.log(instance1.colors); <span class="hljs-comment">// &quot;red,blue,green,black&quot; </span>
+<span class="hljs-keyword">let</span> instance2 = <span class="hljs-keyword">new</span> SubType(); 
+<span class="hljs-built_in">console</span>.log(instance2.colors); <span class="hljs-comment">// &quot;red,blue,green&quot;</span>
+</code></pre>
+<p> &#x4E09;.&#x7EC4;&#x5408;&#x7EE7;&#x627F;(&#x539F;&#x578B;&#x7EE7;&#x627F;+&#x501F;&#x7528;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7EE7;&#x627F;)</p>
+<p> &#x7279;&#x70B9;&#xFF1A;&#x7ED3;&#x5408;&#x4E86;&#x4E24;&#x79CD;&#x7684;&#x4F18;&#x70B9;&#xFF0C;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x5C5E;&#x6027;&#x7684;&#x79C1;&#x6709;&#x5316;</p>
+<p> &#x7F3A;&#x70B9;&#xFF1A;&#x4F46;&#x662F;&#x8C03;&#x7528;&#x4E86;&#x4E24;&#x6B21;&#x7236;&#x7C7B;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x4E00;&#x6B21;&#x662F;&#x521B;&#x5EFA;&#x5B50;&#x7C7B;&#x539F;&#x578B;&#xFF0C;&#x4E00;&#x6B21;&#x662F;&#x5728;&#x5B50;&#x7C7B;&#x6784;&#x9020;&#x51FD;&#x6570;&#x8C03;&#x7528;</p>
+<pre><code class="lang-javaScript">    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">SuperType</span>(<span class="hljs-params">name</span>)</span>{ 
+        <span class="hljs-keyword">this</span>.name = name; 
+        <span class="hljs-keyword">this</span>.colors = [<span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;blue&quot;</span>, <span class="hljs-string">&quot;green&quot;</span>]; 
+    } 
+    SuperType.prototype.sayName = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ 
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.name); 
+    }; 
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">SubType</span>(<span class="hljs-params">name, age</span>)</span>{ 
+        <span class="hljs-comment">// &#x7EE7;&#x627F;&#x5C5E;&#x6027;</span>
+        SuperType.call(<span class="hljs-keyword">this</span>, name); 
+        <span class="hljs-keyword">this</span>.age = age; 
+    } 
+    <span class="hljs-comment">//&#x8FD9;&#x91CC;&#x4F1A;&#x5BFC;&#x81F4;SubType.prototype.constructor&#x662F;SuperType</span>
+    SubType.prototype = <span class="hljs-keyword">new</span> SuperType(); 
+    SubType.prototype.sayAge = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ 
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.age); 
+    }; 
+
+    <span class="hljs-keyword">let</span> instance1 = <span class="hljs-keyword">new</span> SubType(<span class="hljs-string">&quot;Nicholas&quot;</span>, <span class="hljs-number">29</span>); 
+    instance1.colors.push(<span class="hljs-string">&quot;black&quot;</span>); 
+    <span class="hljs-built_in">console</span>.log(instance1.colors); <span class="hljs-comment">// &quot;red,blue,green,black&quot; </span>
+    instance1.sayName(); <span class="hljs-comment">// &quot;Nicholas&quot;; </span>
+    instance1.sayAge(); <span class="hljs-comment">// 29 </span>
+
+    <span class="hljs-keyword">let</span> instance2 = <span class="hljs-keyword">new</span> SubType(<span class="hljs-string">&quot;Greg&quot;</span>, <span class="hljs-number">27</span>); 
+    <span class="hljs-built_in">console</span>.log(instance2.colors); <span class="hljs-comment">// &quot;red,blue,green&quot; </span>
+    instance2.sayName(); <span class="hljs-comment">// &quot;Greg&quot;; </span>
+    instance2.sayAge(); <span class="hljs-comment">// 27</span>
+</code></pre>
+<p>&#x56DB;.&#x539F;&#x578B;&#x5F0F;&#x7EE7;&#x627F;</p>
+<p>&#x7279;&#x70B9;&#xFF1A;&#x4E0D;&#x5B9A;&#x4E49;&#x7C7B;&#x578B;&#x4E5F;&#x80FD;&#x901A;&#x8FC7;&#x539F;&#x578B;&#x5B9E;&#x73B0;&#x5BF9;&#x8C61;&#x4E4B;&#x95F4;&#x7684;&#x4FE1;&#x606F;&#x5171;&#x4EAB;&#xFF0C;&#x521B;&#x5EFA;&#x4E34;&#x65F6;&#x51FD;&#x6570;&#xFF0C;&#x5C06;&#x4F20;&#x5165;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x8D4B;&#x503C;&#x51FD;&#x6570;&#x7684;&#x539F;&#x578B;&#x5BF9;&#x8C61;&#xFF0C;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x65B0;&#x5BF9;&#x8C61;</p>
+<p>&#x7F3A;&#x70B9;&#xFF1A;&#x6CA1;&#x6709;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x573A;&#x666F;</p>
+<pre><code class="lang-javaScript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">object</span> (<span class="hljs-params">o</span>) </span>{
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">F</span> (<span class="hljs-params"></span>) </span>{ }
+  F.prototype = o;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> F();
+}
+<span class="hljs-keyword">let</span> person = {
+  name: <span class="hljs-string">&quot;Nicholas&quot;</span>,
+  friends: [<span class="hljs-string">&quot;Shelby&quot;</span>, <span class="hljs-string">&quot;Court&quot;</span>, <span class="hljs-string">&quot;Van&quot;</span>]
+};
+<span class="hljs-keyword">let</span> anotherPerson = object(person);
+anotherPerson.name = <span class="hljs-string">&quot;Greg&quot;</span>;
+anotherPerson.friends.push(<span class="hljs-string">&quot;Rob&quot;</span>);
+
+<span class="hljs-keyword">let</span> yetAnotherPerson = object(person);
+yetAnotherPerson.name = <span class="hljs-string">&quot;Linda&quot;</span>;
+yetAnotherPerson.friends.push(<span class="hljs-string">&quot;Barbie&quot;</span>);
+<span class="hljs-built_in">console</span>.log(person.friends); <span class="hljs-comment">// &quot;Shelby,Court,Van,Rob,Barbie&quot;</span>
+
+<span class="hljs-comment">// &#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x65F6;&#xFF0C;Object.create()&#x65B9;&#x6CD5;&#x4E0E;object&#x65B9;&#x6CD5;&#x6548;&#x679C;&#x662F;&#x4E00;&#x6837;&#x7684;</span>
+<span class="hljs-keyword">let</span> obj = <span class="hljs-built_in">Object</span>.create(person)
+<span class="hljs-built_in">console</span>.log(obj.name)  <span class="hljs-comment">// &quot;Nicholas&quot;</span>
+</code></pre>
+<p>&#x4E94;&#x3001;&#x5BC4;&#x751F;&#x5F0F;&#x7EE7;&#x627F;</p>
+<p>&#x7279;&#x70B9;&#xFF1A;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5B9E;&#x73B0;&#x7EE7;&#x627F;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x4EE5;&#x67D0;&#x79CD;&#x65B9;&#x5F0F;&#x589E;&#x5F3A;&#x5BF9;&#x8C61;&#xFF0C;&#x7136;&#x540E;&#x8FD4;&#x56DE;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x5728;&#x539F;&#x578B;&#x5F0F;&#x7EE7;&#x627F;&#x7684;&#x57FA;&#x7840;&#x4E0A;&#x53EF;&#x4EE5;&#x5BF9;&#x8FD4;&#x56DE;&#x7684;&#x65B0;&#x5BF9;&#x8C61;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;</p>
+<p>&#x7F3A;&#x70B9;&#xFF1A;&#x6CA1;&#x6709;&#x6784;&#x9020;&#x51FD;&#x6570;&#x573A;&#x666F;</p>
+<pre><code class="lang-javaScript"><span class="hljs-comment">// &#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">object</span> (<span class="hljs-params">o</span>) </span>{
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">F</span> (<span class="hljs-params"></span>) </span>{ }
+  F.prototype = o;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> F();
+}
+
+<span class="hljs-comment">// &#x5BC4;&#x751F;&#x7EE7;&#x627F;&#x51FD;&#x6570;</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createAnother</span> (<span class="hljs-params">original</span>) </span>{
+  <span class="hljs-keyword">let</span> clone = object(original)
+  clone.say = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Hi&apos;</span>)
+  }
+  <span class="hljs-keyword">return</span> clone
+}
+
+<span class="hljs-keyword">let</span> Person = {
+  name: <span class="hljs-string">&apos;person&apos;</span>
+}
+<span class="hljs-keyword">let</span> anotherPerson = createAnother(Person)
+anotherPerson.say()  <span class="hljs-comment">// Hi</span>
+<span class="hljs-built_in">console</span>.log(anotherPerson.name)  <span class="hljs-comment">// Person</span>
+</code></pre>
+<p>&#x516D;&#x3001;&#x5BC4;&#x751F;&#x7EC4;&#x5408;&#x5F0F;&#x7EE7;&#x627F;</p>
+<p>&#x7279;&#x70B9;&#xFF1A;&#x89E3;&#x51B3;&#x7EC4;&#x5408;&#x7EE7;&#x627F;&#x7684;&#x4E24;&#x6B21;&#x8C03;&#x7528;&#x95EE;&#x9898;</p>
+<ol>
+<li>&#x4F20;&#x5165;&#x5B50;&#x7C7B;&#x6784;&#x9020;&#x51FD;&#x6570;&#x548C;&#x7236;&#x7C7B;&#x6784;&#x9020;&#x51FD;&#x6570;</li>
+<li>&#x521B;&#x5EFA;&#x7236;&#x7C7B;&#x539F;&#x578B;&#x7684;&#x4E00;&#x4E2A;&#x526F;&#x672C;</li>
+<li>&#x7ED9;&#x8FD4;&#x56DE;&#x7684;&#x526F;&#x672C;&#x8BBE;&#x7F6E;&#x6B63;&#x786E;&#x7684;constructor&#x5C5E;&#x6027;</li>
+<li>&#x5C06;&#x526F;&#x672C;&#x8D4B;&#x503C;&#x7ED9;&#x5B50;&#x7C7B;&#x7684;&#x539F;&#x578B;</li>
+</ol>
+<pre><code class="lang-javaScript"><span class="hljs-comment">// &#x552F;&#x4E00;&#x7684;&#x6838;&#x5FC3;&#xFF0C;&#x76F8;&#x5BF9;&#x4E8E;&#x7EC4;&#x5408;&#x7EE7;&#x627F;&#xFF0C;&#x4E0D;&#x7528;&#x518D;&#x8C03;&#x7528;SuperType()&#x800C;&#x662F;&#x76F4;&#x63A5;&#x521B;&#x5EFA;&#x7236;&#x7684;&#x539F;&#x578B;&#x5BF9;&#x8C61;&#x7684;&#x65B0;&#x5BF9;&#x8C61;&#xFF0C;&#x76F4;&#x63A5;&#x5173;&#x8054;&#x7236;&#x7684;&#x539F;&#x578B;&#x5BF9;&#x8C61;</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">inheritPrototype</span>(<span class="hljs-params">subType, superType</span>) </span>{ 
+  <span class="hljs-keyword">let</span> prototype = object(superType.prototype); <span class="hljs-comment">// &#x521B;&#x5EFA;&#x5BF9;&#x8C61;</span>
+  prototype.constructor = subType; <span class="hljs-comment">// &#x589E;&#x5F3A;&#x5BF9;&#x8C61;</span>
+  subType.prototype = prototype; <span class="hljs-comment">// &#x8D4B;&#x503C;&#x5BF9;&#x8C61;</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">SuperType</span>(<span class="hljs-params">name</span>) </span>{ 
+ <span class="hljs-keyword">this</span>.name = name; 
+ <span class="hljs-keyword">this</span>.colors = [<span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;blue&quot;</span>, <span class="hljs-string">&quot;green&quot;</span>]; 
+} 
+SuperType.prototype.sayName = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ 
+ <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.name); 
+}; 
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">SubType</span>(<span class="hljs-params">name, age</span>) </span>{ 
+ <span class="hljs-comment">// &#x8FD9;&#x91CC;&#x62F7;&#x8D1D;&#x7236;&#x51FD;&#x6570;&#x7684;&#x79C1;&#x6709;&#x5C5E;&#x6027;</span>
+ SuperType.call(<span class="hljs-keyword">this</span>, name);
+ <span class="hljs-keyword">this</span>.age = age; 
+} 
+inheritPrototype(SubType, SuperType); 
+SubType.prototype.sayAge = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ 
+ <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.age); 
+};
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="class.html" class="navigation navigation-prev " aria-label="Previous page: 类">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="thunk.html" class="navigation navigation-next " aria-label="Next page: Thunk">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"继承","level":"1.4","depth":1,"next":{"title":"Thunk","level":"1.5","depth":1,"path":"docs/thunk.md","ref":"docs/thunk.md","articles":[]},"previous":{"title":"类","level":"1.3","depth":1,"path":"docs/class.md","ref":"docs/class.md","articles":[]},"dir":"ltr"},"config":{"plugins":["highlight","livereload"],"styles":{"symbol":"./css/app.css"},"pluginsConfig":{"highlight":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"9787121324758","variables":{},"title":"常成的个人笔记","links":{"sharing":{"all":null,"facebook":null,"google":null,"twitter":null,"weibo":null}},"gitbook":"*","description":"个人笔记","extension":null},"file":{"path":"docs/instance.md","mtime":"2020-12-13T10:29:15.859Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-12-18T07:14:47.160Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
