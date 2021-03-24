@@ -1,0 +1,520 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>接口 · 常成的个人笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        <meta name="identifier" content="9787121324758" scheme="ISBN">
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="hssxxb.html" />
+    
+    
+    <link rel="prev" href="generic.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="base.html">
+            
+                <a href="base.html">
+            
+                    
+                    基础类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="function.html">
+            
+                <a href="function.html">
+            
+                    
+                    函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="class.html">
+            
+                <a href="class.html">
+            
+                    
+                    类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" data-path="decorator.html">
+            
+                <a href="decorator.html">
+            
+                    
+                    类的装饰器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="generic.html">
+            
+                <a href="generic.html">
+            
+                    
+                    泛型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.6" data-path="interface.html">
+            
+                <a href="interface.html">
+            
+                    
+                    接口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7" data-path="hssxxb.html">
+            
+                <a href="hssxxb.html">
+            
+                    
+                    函数的双向协变
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../generator.html">
+            
+                <a href="../generator.html">
+            
+                    
+                    迭代器和生成器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../object.html">
+            
+                <a href="../object.html">
+            
+                    
+                    对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../class.html">
+            
+                <a href="../class.html">
+            
+                    
+                    类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../instance.html">
+            
+                <a href="../instance.html">
+            
+                    
+                    继承
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../thunk.html">
+            
+                <a href="../thunk.html">
+            
+                    
+                    Thunk
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >接口</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <!--
+ * @Author: cc
+ * @LastEditTime: 2021-03-21 16:30:27
+-->
+<p><code>&#x63A5;&#x53E3;&#x4E00;&#x65B9;&#x9762;&#x53EF;&#x4EE5;&#x5728;&#x9762;&#x5411;&#x7F16;&#x7A0B;&#x4E2D;&#x8868;&#x793A;&#x884C;&#x4E3A;&#x7684;&#x62BD;&#x8C61;&#xFF0C;&#x53E6;&#x5916;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x8868;&#x793A;&#x5BF9;&#x8C61;&#x7684;&#x5F62;&#x72B6;</code></p>
+<p><code>&#x63A5;&#x53E3;&#x5C31;&#x662F;&#x628A;&#x4E00;&#x4E9B;&#x7C7B;&#x4E2D;&#x7684;&#x5171;&#x6709;&#x5C5E;&#x6027;&#x548C;&#x65B9;&#x6CD5;&#x62BD;&#x8C61;&#x51FA;&#x6765;&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x7EA6;&#x675F;&#x5B9E;&#x73B0;&#x6B64;&#x63A5;&#x53E3;&#x7684;&#x7C7B;</code></p>
+<p><code>&#x4E00;&#x4E2A;&#x7C7B;&#x53EF;&#x4EE5;&#x7EE7;&#x627F;&#x53E6;&#x4E00;&#x4E2A;&#x7C7B;&#x5E76;&#x5B9E;&#x73B0;&#x591A;&#x4E2A;&#x63A5;&#x53E3;</code></p>
+<p><code>&#x63A5;&#x53E3;&#x50CF;&#x63D2;&#x4EF6;&#x4E00;&#x6837;&#x7528;&#x6765;&#x589E;&#x5F3A;&#x7C7B;&#xFF0C;&#x800C;&#x62BD;&#x8C61;&#x7C7B;&#x662F;&#x5177;&#x4F53;&#x7C7B;&#x7684;&#x62BD;&#x8C61;</code></p>
+<p><code>&#x4E00;&#x4E2A;&#x7C7B;&#x53EF;&#x4EE5;&#x6709;&#x5B9E;&#x73B0;&#x591A;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#x4E5F;&#x53EF;&#x4EE5;&#x88AB;&#x591A;&#x4E2A;&#x7C7B;&#x5B9E;&#x73B0;&#xFF0C;&#x4F46;&#x4E00;&#x4E2A;&#x7C7B;&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x4E2A;&#x5B50;&#x7C7B;&#xFF0C;&#x4F46;&#x53EA;&#x80FD;&#x6709;&#x4E00;&#x4E2A;&#x7236;&#x7C7B;</code></p>
+<p>&#x63A5;&#x53E3;&#x5408;&#x5E76;&#x548C;&#x7EE7;&#x627F;</p>
+<pre><code class="lang-javaScript">  interface SpeakAble {
+    name: string;
+    speak(): <span class="hljs-keyword">void</span>;
+  }
+  interface SpeakAble {
+    age: number;
+  }
+  interface EatAble {
+    eat(): <span class="hljs-keyword">void</span>;
+  }
+  <span class="hljs-comment">// implements&#xFF1A;&#x5DE5;&#x5177; &#x8FD9;&#x91CC;&#x662F;Person&#x7C7B;&#x5B9E;&#x73B0;&#x8FD9;&#x4E24;&#x4E2A;&#x63A5;&#x53E3;</span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> <span class="hljs-title">implements</span> <span class="hljs-title">SpeakAble</span>, <span class="hljs-title">EatAble</span> </span>{
+    name: string;
+    speak(): <span class="hljs-keyword">void</span> {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;Method not implemented.&quot;</span>);
+    }
+    age: number;
+    eat(): <span class="hljs-keyword">void</span> {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;Method not implemented.&quot;</span>);
+    }
+  }
+</code></pre>
+<p>&#x63A5;&#x53E3;&#x7684;&#x4EFB;&#x610F;&#x5C5E;&#x6027;</p>
+<pre><code class="lang-javaScript">interface Person {
+    [key: string]: any
+  }
+  <span class="hljs-keyword">let</span> person: Person = {
+    a: <span class="hljs-number">1</span>
+  }
+</code></pre>
+<p>&#x63A5;&#x53E3;&#x7684;&#x7EE7;&#x627F;</p>
+<pre><code class="lang-javaScript">  interface name {
+    name(): <span class="hljs-keyword">void</span>
+  }
+  interface age extends name {
+    age(): <span class="hljs-keyword">void</span>
+  }
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> <span class="hljs-title">implements</span> <span class="hljs-title">age</span> </span>{
+    age(): <span class="hljs-keyword">void</span> {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;Method not implemented.&quot;</span>);
+    }
+    name(): <span class="hljs-keyword">void</span> {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;Method not implemented.&quot;</span>);
+    }
+  }
+</code></pre>
+<p>&#x51FD;&#x6570;&#x7C7B;&#x578B;&#x63A5;&#x53E3;</p>
+<pre><code class="lang-javaScript">  interface Discount {
+    (price: number): number
+  }
+  <span class="hljs-keyword">const</span> discount: Discount = (num: number): number =&gt; {
+    <span class="hljs-keyword">return</span> num
+  }
+  <span class="hljs-comment">// &#x5BF9;&#x8C61;&#xFF0C;&#x6570;&#x7EC4;&#x63A5;&#x53E3;</span>
+  interface User {
+    [string: number]: number
+  }
+  <span class="hljs-keyword">let</span> arr: User = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+  <span class="hljs-keyword">let</span> user = {
+    <span class="hljs-string">&apos;0&apos;</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">&apos;1&apos;</span>: <span class="hljs-number">2</span>
+  }
+</code></pre>
+<p>&#x6784;&#x9020;&#x51FD;&#x6570;&#x7C7B;&#x578B;</p>
+<pre><code class="lang-javaScript"> <span class="hljs-comment">// &#x6784;&#x9020;&#x51FD;&#x6570;&#x7C7B;&#x578B;</span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span> </span>{
+    <span class="hljs-keyword">constructor</span>(public name: string) {
+    }
+  }
+  <span class="hljs-comment">// &#x52A0;&#x4E0A;new&#x4E4B;&#x540E;&#x5C31;&#x662F;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7C7B;&#x578B;&#x5C31;&#x662F;&#x7528;&#x6765;&#x63CF;&#x8FF0;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;</span>
+  interface WithNameClass {
+    <span class="hljs-keyword">new</span>(name: string): Animal;
+  }
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createAnimal</span>(<span class="hljs-params">classes: WithNameClass, name: string</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> classes(name)
+  }
+  <span class="hljs-keyword">let</span> a = createAnimal(Animal, <span class="hljs-string">&apos;dog&apos;</span>)
+  <span class="hljs-built_in">console</span>.log(a.name) <span class="hljs-comment">// dog</span>
+
+  <span class="hljs-comment">//&#x5F53;&#x6211;&#x4EEC;&#x5199;&#x4E00;&#x4E2A;&#x7C7B;&#x578B;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F1A;&#x5F97;&#x5230;&#x4E24;&#x4E2A;&#x7C7B;&#x578B;</span>
+  <span class="hljs-comment">// 1.&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x51FD;&#x6570;&#x7C7B;&#x578B;</span>
+  <span class="hljs-comment">// 2.&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x7C7B;&#x578B;</span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">static</span> myName: string = <span class="hljs-string">&apos;&#x9759;&#x6001;&#x5C5E;&#x6027;&#x540D;&#x79F0;&apos;</span>;
+  }
+  <span class="hljs-keyword">let</span> com = Component;
+  <span class="hljs-comment">// Component&#x7C7B;&#x540D;&#x672C;&#x8EAB;&#x8868;&#x793A;&#x7684;&#x662F;&#x5B9E;&#x4F8B;&#x7684;&#x7C7B;&#x578B;</span>
+  <span class="hljs-comment">// ts &#x4E00;&#x4E2A;&#x7C7B;&#x7C7B;&#x578B; &#x4E00;&#x4E2A;&#x53EB;&#x503C;</span>
+  <span class="hljs-comment">// &#x5192;&#x53F7;&#x540E;&#x9762;&#x662F;&#x7C7B;&#x578B;&#xFF0C;&#x540E;&#x9762;&#x7684;&#x662F;&#x6307;&#x5177;&#x4F53;&#x7684;&#x5B9E;&#x73B0;</span>
+  <span class="hljs-comment">// typeof &#x83B7;&#x53D6;&#x51FD;&#x6570;&#x7684;&#x7C7B;&#x578B;</span>
+  <span class="hljs-keyword">let</span> c: <span class="hljs-keyword">typeof</span> Component = com
+  <span class="hljs-keyword">let</span> f: Component = <span class="hljs-keyword">new</span> Component()
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FnComponent</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">this</span>.myName = <span class="hljs-string">&apos;&#x5B9E;&#x4F8B;&#x5C5E;&#x6027;&apos;</span>
+  }
+  <span class="hljs-keyword">let</span> fn = Component
+  <span class="hljs-keyword">let</span> typeoFn: <span class="hljs-keyword">typeof</span> Component = fn;
+</code></pre>
+<p>&#x62BD;&#x8C61;&#x7C7B;&#x4E0E;&#x63A5;&#x53E3;</p>
+<p><code>&#x4E0D;&#x540C;&#x7C7B;&#x4E4B;&#x95F4;&#x516C;&#x6709;&#x7684;&#x5C5E;&#x6027;&#x548C;&#x65B9;&#x6CD5;&#xFF0C;&#x53EF;&#x4EE5;&#x62BD;&#x8C61;&#x6210;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;</code></p>
+<p><code>&#x800C;&#x62BD;&#x8C61;&#x7C7B;&#x662F;&#x4F9B;&#x5176;&#x4ED6;&#x7C7B;&#x7EE7;&#x627F;&#x7684;&#x57FA;&#x7C7B;&#xFF0C;&#x62BD;&#x8C61;&#x7C7B;&#x4E0D;&#x5141;&#x8BB8;&#x88AB;&#x5B9E;&#x4F8B;&#x5316;&#xFF0C;&#x62BD;&#x8C61;&#x7C7B;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x548C;&#x5C5E;&#x6027;&#x5FC5;&#x987B;&#x5728;&#x5B50;&#x7C7B;&#x4E2D;&#x5B9E;&#x73B0;</code></p>
+<p><code>&#x62BD;&#x8C61;&#x7C7B;&#x7684;&#x672C;&#x8EAB;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x65E0;&#x6CD5;&#x5B9E;&#x4F8B;&#x5316;&#x7684;&#x7C7B;&#xFF0C;&#x5176;&#x4E2D;&#x80FD;&#x591F;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;&#x548C;&#x521D;&#x59CB;&#x5316;&#x5C5E;&#x6027;&#xFF0C;&#x800C;&#x63A5;&#x53E3;&#x4EC5;&#x7528;&#x4E8E;&#x63CF;&#x8FF0;&#x800C;&#x4E0D;&#x63D0;&#x4F9B;&#x5177;&#x4F53;&#x65B9;&#x6CD5;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x4E5F;&#x4E0D;&#x4E3A;&#x5C5E;&#x6027;&#x4E00;&#x5171;&#x5177;&#x4F53;&#x7684;&#x521D;&#x59CB;&#x5316;</code></p>
+<p><code>&#x62BD;&#x8C61;&#x7C7B;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x63A5;&#x53E3;</code></p>
+<pre><code class="lang-javaScript">  abstract <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span> </span>{
+    public name: string;
+    abstract say(name: string): <span class="hljs-keyword">void</span>
+  }
+  interface Fly {
+    fly(name: string): <span class="hljs-keyword">void</span>
+  }
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dog</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Animal</span> <span class="hljs-title">implements</span> <span class="hljs-title">Fly</span> </span>{
+    public name: string;
+    say(name: string) { }
+    fly(name: string) { }
+  }
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="generic.html" class="navigation navigation-prev " aria-label="Previous page: 泛型">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="hssxxb.html" class="navigation navigation-next " aria-label="Next page: 函数的双向协变">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"接口","level":"1.1.6","depth":2,"next":{"title":"函数的双向协变","level":"1.1.7","depth":2,"path":"docs/typeScript/hssxxb.md","ref":"docs/typeScript/hssxxb.md","articles":[]},"previous":{"title":"泛型","level":"1.1.5","depth":2,"path":"docs/typeScript/generic.md","ref":"docs/typeScript/generic.md","articles":[]},"dir":"ltr"},"config":{"plugins":["highlight","chapter-fold","livereload"],"styles":{"symbol":"./css/app.css"},"pluginsConfig":{"highlight":{},"chapter-fold":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"9787121324758","variables":{},"title":"常成的个人笔记","links":{"sharing":{"all":null,"facebook":null,"google":null,"twitter":null,"weibo":null}},"gitbook":"*","description":"个人笔记","extension":null},"file":{"path":"docs/typeScript/interface.md","mtime":"2021-03-21T08:42:25.515Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-03-21T08:50:11.227Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

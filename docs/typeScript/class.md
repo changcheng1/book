@@ -1,32 +1,32 @@
 <!--
  * @Author: cc
- * @LastEditTime: 2021-03-16 23:46:32
+ * @LastEditTime: 2021-03-21 16:33:07
 -->
 类
 
 ```javaScript
-class Person1 {
+class Person {
   name: string;
   getName(): void {
     console.log(this.name)
   }
 }
-let person = new Person1()
+let person = new Person()
 person.name = '123'
-person.getName()
+person.getName()  //123
 ```
 
 ES5实现类
 
 ```javaScript
-const Person2 = (function () {
+const Person = (function () {
   function Person() { }
   Person.prototype.getName = function () {
     console.log(this.name)
   }
   return Person
 })()
-let personResult = new Person2()
+let personResult = new Person()
 personResult.name = '123'
 personResult.getName()
 ```
@@ -34,17 +34,17 @@ personResult.getName()
 类的存取器
 
 ```javaScript
-class Person4 {
+class Person {
   public _name: string;
   get name() {
     return this._name
   }
   set name(val) {
-    console.log('val', val)
+    console.log(val) //4
     this._name = val
   }
 }
-let person5 = new Person4()
+let person5 = new Person()
 person5.name = '4'
 ```
 
@@ -76,13 +76,14 @@ class Son extends Father {
   }
 }
 let cc = new Son()
-cc.getFatherName()
+cc.getFatherName() //33
 ```
 
 抽象类:只能被继承，不能被实例化
 
 ```javaScript
-abstract class Animal2 {
+// 抽象类
+abstract class Animal {
   constructor(name: string) {
   }
   abstract makeSound(): void;  // 必须在派生类中实现
@@ -90,7 +91,8 @@ abstract class Animal2 {
     console.log('roaming the earch...');
   }
 }
-class Dog12 extends Animal2 {
+// 继承抽象类
+class Dog12 extends Animal {
   constructor() {
     super('Accounting and Auditing');
   }
@@ -98,6 +100,6 @@ class Dog12 extends Animal2 {
 
   }
 }
-let newDog12Class: Animal2;
+let newDog12Class: Animal;
 newDog12Class = new Dog12()
 ```

@@ -1,16 +1,17 @@
 <!--
  * @Author: cc
- * @LastEditTime: 2021-03-16 23:57:50
+ * @LastEditTime: 2021-03-18 21:21:04
 -->
 装饰器以及工厂
 
 ```javaScript
+//给类的原型链上添加属性
 function addNameFactory(name: string) {
   return function addName(x: Function) {
     x.prototype.name = name
   }
 }
-
+// 传入参数
 @addNameFactory('cc')
 
 class Person {
@@ -25,6 +26,7 @@ console.log(p.name) // cc
 方法装饰器
 
 ```javaScript
+// 属性装饰器：将传入的参数进行处理，全部改成大写
 function upperCase(target: any, key: string) {
   console.log(target) //Person {}
   console.log(key)  //name
@@ -42,12 +44,12 @@ function upperCase(target: any, key: string) {
     })
   }
 }
-// 如果装饰的是静态属性的话，target是构造函数本身
-function staticPropertyDector(target: any, key: string) {
+// 静态属性装饰器：如果装饰的是静态属性的话，target是构造函数本身
+function staticPropertyDeactor(target: any, key: string) {
   console.log(target) //Person { name: [Getter/Setter] }
   console.log(key) //age
 }
-// 方法装饰器
+// 方法装饰器：可以重写方法
 function toNumber(target: any, key: string, descriptor: PropertyDescriptor) {
   console.log(target) //Person { name: [Getter/Setter] }
   console.log(key)  //sum
@@ -61,7 +63,7 @@ function toNumber(target: any, key: string, descriptor: PropertyDescriptor) {
 class Person {
   @upperCase
   name: string;
-  @staticPropertyDector
+  @staticPropertyDeactor
   age: number = 10;
   getName() {
     console.log(this.name)
@@ -99,7 +101,7 @@ person.login('cc', '123')  // 10 'cc' '123'
 装饰器的执行顺序
 
 ```javaScript
-// 类装饰器
+   // 类装饰器
   function ClassDecorator1() {
     return function (target) {
       console.log('ClassDecorator1')

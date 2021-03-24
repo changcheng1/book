@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>函数 · 常成的个人笔记</title>
+        <title>泛型 · 常成的个人笔记</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -51,10 +51,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="class.html" />
+    <link rel="next" href="interface.html" />
     
     
-    <link rel="prev" href="base.html" />
+    <link rel="prev" href="decorator.html" />
     
 
     </head>
@@ -110,7 +110,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.1.2" data-path="function.html">
+        <li class="chapter " data-level="1.1.2" data-path="function.html">
             
                 <a href="function.html">
             
@@ -149,7 +149,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.1.5" data-path="generic.html">
+        <li class="chapter active" data-level="1.1.5" data-path="generic.html">
             
                 <a href="generic.html">
             
@@ -288,7 +288,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >函数</a>
+        <a href="../.." >泛型</a>
     </h1>
 </div>
 
@@ -303,36 +303,102 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <!--
- * @Author: cc
- * @LastEditTime: 2021-03-21 16:42:15
--->
-<p>&#x51FD;&#x6570;</p>
-<pre><code class="lang-javaScript">type fnType = (x: string) =&gt; string
-type fnType2 = <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">T</span>&gt;</span>(x: T) =&gt; T
+                                <p>&#x9ED8;&#x8BA4;&#x6CDB;&#x578B;</p>
+<pre><code class="lang-javaScript">  function logger&lt;T extends number[]&gt;(arg: T) {
+    console.log(arg.length)  //3
+  }
+  logger([1, 2, 3])
 
-const fnType3: fnType = (a) =&gt; {
-  return a
-}
-fnType3(&apos;1&apos;)
+  function CreateArray&lt;T&gt;(length: number, value: T): Array&lt;T&gt; {
+    let result: T[] = []
+    for (let k = 0; k &lt; length; k++) {
+      result.push(value)
+    }
+    return result;
+  }
+  // &#x8FD9;&#x91CC;&#x786E;&#x5B9A;&#x4F20;&#x5165;&#x7684;&#x7C7B;&#x578B;
+  CreateArray(3, &apos;x&apos;)  // [x,x,x]
+</code></pre>
+<p>&#x6CDB;&#x578B;&#x7C7B;</p>
+<pre><code class="lang-javaScript"> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyArray</span>&lt;<span class="hljs-title">T</span>&gt;</span>{
+    private array: T[] = []
+    pushArray&lt;T&gt;(arg) {
+      <span class="hljs-keyword">this</span>.array.push(arg)
+    }
+    getArray(): T {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.array[<span class="hljs-number">0</span>]
+    }
+  }
 
-function ajax(url: string, method: string = &apos;GET&apos;): void { }
-ajax(&apos;/&apos;)
+  <span class="hljs-keyword">let</span> arr = <span class="hljs-keyword">new</span> MyArray&lt;number&gt;()
+  arr.pushArray(<span class="hljs-number">1</span>)
+  <span class="hljs-built_in">console</span>.log(arr.getArray())  <span class="hljs-comment">// 1</span>
 
-function sum(...num: number[]) {
-  return num.reduce((prev, crrent) =&gt; prev + crrent, 0)
-}
-sum(1, 2, 3)
-</span></code></pre>
-<p>&#x51FD;&#x6570;&#x91CD;&#x8F7D;&#xFF1A;&#x7ECF;&#x5178;&#x6848;&#x4F8B;redux&#x4E2D;&#x7684;compose</p>
-<pre><code class="lang-javaScript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">attr</span>(<span class="hljs-params">a: string, b: number</span>): <span class="hljs-title">void</span>
-<span class="hljs-title">function</span> <span class="hljs-title">attr</span>(<span class="hljs-params">a: number, b: number</span>): <span class="hljs-title">void</span>
-<span class="hljs-title">function</span> <span class="hljs-title">attr</span>(<span class="hljs-params">val: any</span>): <span class="hljs-title">void</span> </span>{
-  <span class="hljs-built_in">console</span>.log(val)
-}
-attr(<span class="hljs-string">&apos;1&apos;</span>, <span class="hljs-number">2</span>)
-attr(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>)
-attr(<span class="hljs-string">&apos;1&apos;</span>, <span class="hljs-number">2</span>)
+  <span class="hljs-comment">// &#x6CDB;&#x578B;&#x4E0E;new</span>
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">newClass</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">classes: { new(</span>): <span class="hljs-title">T</span> }): <span class="hljs-title">T</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> classes()
+  }
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>{ }
+  <span class="hljs-keyword">let</span> p = newClass(Person)
+</code></pre>
+<p>&#x6CDB;&#x578B;&#x63A5;&#x53E3;</p>
+<pre><code class="lang-javaScript">  interface Calculate {
+    &lt;T extends (number | string)&gt;(num: T, b: T)
+  }
+
+  let num: Calculate = &lt;T extends (number | string)&gt;(a: T, b: T): any =&gt; {
+  }
+  num(&apos;1&apos;, &apos;2&apos;)
+
+  interface type&lt;T = number&gt; {
+    &lt;T&gt;(a: T): T
+  }
+  let a: type = (param) =&gt; param
+  console.log(a(1))
+</code></pre>
+<p>&#x6CDB;&#x578B;&#x7EA6;&#x675F;:extends&#x5176;&#x5B9E;&#x53EA;&#x770B;&#x5F62;&#x72B6;&#xFF0C;&#x6709;&#x6CA1;&#x6709;&#x5BF9;&#x5E94;&#x7684;&#x5C5E;&#x6027;</p>
+<pre><code class="lang-javaScript">  <span class="hljs-comment">// &#x5982;&#x679C;&#x7C7B;&#x4E2D;&#x90FD;&#x662F;&#x7A7A;&#x5BF9;&#x8C61;&#xFF0C;&#x90A3;&#x6CDB;&#x578B;&#x4E2D;&#x4F20;&#x5165;grandFather&#x4E5F;&#x53EF;&#x4EE5;</span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GrandFather</span> </span>{
+    grandFather: string
+  }
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Father</span> </span>{
+    father: string
+  }
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Father</span> </span>{
+    child: string
+  }
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getFather</span>&lt;<span class="hljs-title">T</span> <span class="hljs-title">extends</span> <span class="hljs-title">Father</span>&gt;(<span class="hljs-params"></span>) </span>{
+  }
+  getFather()
+</code></pre>
+<p>&#x6CDB;&#x578B;&#x7684;&#x6570;&#x7EC4;&#x6821;&#x9A8C;</p>
+<pre><code class="lang-javaScript"> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">demo1</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">arg: String[]</span>) </span>{ }
+  demo1&lt;string&gt;([<span class="hljs-string">&apos;1&apos;</span>])
+
+  interface ArrayType {
+    [key: number]: {
+      type: string,
+      num: number
+    }
+  }
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">demo</span>&lt;<span class="hljs-title">ArrayType</span>&gt;(<span class="hljs-params">arg: ArrayType</span>) </span>{
+    <span class="hljs-keyword">return</span> arg[<span class="hljs-number">0</span>]
+  }
+  demo([{ type: <span class="hljs-string">&apos;1&apos;</span>, num: <span class="hljs-number">1</span> }])  <span class="hljs-comment">// { type: &apos;1&apos;, num: 1 }</span>
+
+  interface ListType&lt;T&gt; {
+    list: T[]
+  }
+  <span class="hljs-keyword">const</span> getType: ListType&lt;{ name: string, age: number }&gt; = { list: [{ name: <span class="hljs-string">&apos;cc&apos;</span>, age: <span class="hljs-number">10</span> }] }
+</code></pre>
+<p>&#x6CDB;&#x578B;&#x7684;&#x7C7B;&#x578B;&#x522B;&#x540D;</p>
+<pre><code class="lang-javaScript">  type ArrayType = {
+    name: string,
+    age: number
+  }
+  type Cart&lt;T = number&gt; = { list: <span class="hljs-built_in">Array</span>&lt;ArrayType&gt; } | T[]
+  <span class="hljs-keyword">let</span> cart: Cart = { list: [{ name: <span class="hljs-string">&apos;cc&apos;</span>, age: <span class="hljs-number">1</span> }] }
+  <span class="hljs-keyword">let</span> cart1: Cart = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
 </code></pre>
 
                                 
@@ -361,12 +427,12 @@ attr(<span class="hljs-string">&apos;1&apos;</span>, <span class="hljs-number">2
 
             
                 
-                <a href="base.html" class="navigation navigation-prev " aria-label="Previous page: 基础类型">
+                <a href="decorator.html" class="navigation navigation-prev " aria-label="Previous page: 类的装饰器">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="class.html" class="navigation navigation-next " aria-label="Next page: 类">
+                <a href="interface.html" class="navigation navigation-next " aria-label="Next page: 接口">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -377,7 +443,7 @@ attr(<span class="hljs-string">&apos;1&apos;</span>, <span class="hljs-number">2
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"函数","level":"1.1.2","depth":2,"next":{"title":"类","level":"1.1.3","depth":2,"path":"docs/typeScript/class.md","ref":"docs/typeScript/class.md","articles":[]},"previous":{"title":"基础类型","level":"1.1.1","depth":2,"path":"docs/typeScript/base.md","ref":"docs/typeScript/base.md","articles":[]},"dir":"ltr"},"config":{"plugins":["highlight","chapter-fold","livereload"],"styles":{"symbol":"./css/app.css"},"pluginsConfig":{"highlight":{},"chapter-fold":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"9787121324758","variables":{},"title":"常成的个人笔记","links":{"sharing":{"all":null,"facebook":null,"google":null,"twitter":null,"weibo":null}},"gitbook":"*","description":"个人笔记","extension":null},"file":{"path":"docs/typeScript/function.md","mtime":"2021-03-21T08:42:16.117Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-03-21T08:50:11.227Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"泛型","level":"1.1.5","depth":2,"next":{"title":"接口","level":"1.1.6","depth":2,"path":"docs/typeScript/interface.md","ref":"docs/typeScript/interface.md","articles":[]},"previous":{"title":"类的装饰器","level":"1.1.4","depth":2,"path":"docs/typeScript/decorator.md","ref":"docs/typeScript/decorator.md","articles":[]},"dir":"ltr"},"config":{"plugins":["highlight","chapter-fold","livereload"],"styles":{"symbol":"./css/app.css"},"pluginsConfig":{"highlight":{},"chapter-fold":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"9787121324758","variables":{},"title":"常成的个人笔记","links":{"sharing":{"all":null,"facebook":null,"google":null,"twitter":null,"weibo":null}},"gitbook":"*","description":"个人笔记","extension":null},"file":{"path":"docs/typeScript/generic.md","mtime":"2021-03-21T08:42:19.391Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-03-21T08:50:11.227Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
