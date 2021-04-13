@@ -51,7 +51,7 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../generator.html" />
+    <link rel="next" href="protected.html" />
     
     
     <link rel="prev" href="interface.html" />
@@ -188,6 +188,45 @@
             
         </li>
     
+        <li class="chapter " data-level="1.1.8" data-path="protected.html">
+            
+                <a href="protected.html">
+            
+                    
+                    类型保护
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9" data-path="ruleType.html">
+            
+                <a href="ruleType.html">
+            
+                    
+                    条件类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.10" data-path="utilsType.html">
+            
+                <a href="utilsType.html">
+            
+                    
+                    工具类型
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -305,7 +344,7 @@
                                 
                                 <!--
  * @Author: cc
- * @LastEditTime: 2021-03-21 16:42:23
+ * @LastEditTime: 2021-03-26 15:27:27
 -->
 <p>&#x63A5;&#x53E3;&#x7684;&#x517C;&#x5BB9;&#x6027;</p>
 <pre><code class="lang-javaScript"> interface Animal {
@@ -324,6 +363,80 @@
     gender: <span class="hljs-number">0</span>
   }
   person(a)
+</code></pre>
+<p>&#x57FA;&#x672C;&#x6570;&#x636E;&#x7684;&#x517C;&#x5BB9;&#x6027;</p>
+<pre><code class="lang-javaScript">  <span class="hljs-keyword">let</span> a: string | number;
+  <span class="hljs-keyword">let</span> b: string = <span class="hljs-string">&apos;123&apos;</span>;
+  a = b;
+  b = a;
+  <span class="hljs-comment">// &#x56E0;&#x4E3A;str&#x4E0A;&#x9762;&#x6709;toString&#x65B9;&#x6CD5;</span>
+  <span class="hljs-keyword">let</span> num: {
+    toString(): string
+  }
+  <span class="hljs-keyword">let</span> str: string = <span class="hljs-string">&apos;1&apos;</span>
+  num = str;
+}
+</code></pre>
+<p>&#x7C7B;&#x7684;&#x517C;&#x5BB9;&#x6027;</p>
+<pre><code class="lang-javaScript">  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span> </span>{
+    name: string;
+    age: number
+  }
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bird</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Animal</span> </span>{ gender: number }
+  <span class="hljs-keyword">var</span> a: Animal = {
+    name: <span class="hljs-string">&apos;cc&apos;</span>,
+    age: <span class="hljs-number">18</span>
+  };
+  <span class="hljs-keyword">var</span> b: Bird = {
+    name: <span class="hljs-string">&apos;cc&apos;</span>,
+    age: <span class="hljs-number">18</span>,
+    gender: <span class="hljs-number">0</span>
+  };
+  a = b;
+</code></pre>
+<p>&#x51FD;&#x6570;&#x7684;&#x517C;&#x5BB9;&#x6027;&#xFF1A;&#x8003;&#x8651;&#x7C7B;&#x578B;&#x5B89;&#x5168;&#xFF0C;&#x4F7F;&#x7528;&#x4E0D;&#x4F1A;&#x62A5;&#x9519;</p>
+<p><code>&#x53C2;&#x6570;&#x9006;&#x53D8;&#x7236;&#x7C7B;&#xFF0C;&#x8FD4;&#x56DE;&#x503C;&#x534F;&#x53D8;&#x5B50;&#x7C7B;</code></p>
+<p><code>&#x51FD;&#x6570;&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x5C11;&#x4E0D;&#x80FD;&#x591A;&#xFF0C;&#x8FD4;&#x56DE;&#x503C;&#x53EF;&#x4EE5;&#x591A;&#x4E0D;&#x80FD;&#x5C11;</code></p>
+<pre><code class="lang-javaScript">  type fn = (name: string, age: number) =&gt; <span class="hljs-keyword">void</span>;
+  <span class="hljs-keyword">let</span> f: fn;
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn2</span>(<span class="hljs-params">name: string</span>) </span>{ }
+  f = fn2;
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn3</span>(<span class="hljs-params">name: string, age: 18, color: &apos;red&apos;</span>) </span>{ }
+  f = fn3;  <span class="hljs-comment">// &#x4E0D;&#x53EF;&#x4EE5;&#x591A;&#x4F20;</span>
+
+  type fn = () =&gt; { name: string, age: number }
+  <span class="hljs-keyword">let</span> f: fn;
+  <span class="hljs-keyword">let</span> f1 = () =&gt; ({ name: <span class="hljs-string">&apos;18&apos;</span>, age: <span class="hljs-number">1</span> })
+  f = f1;
+  <span class="hljs-keyword">let</span> f2 = () =&gt; ({ name: <span class="hljs-string">&apos;18&apos;</span> })
+  f = f2;  <span class="hljs-comment">// erro:&#x53C2;&#x6570;&#x5C11;&#x4F20;age</span>
+</code></pre>
+<p>&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x4F20;&#x81EA;&#x5DF1;&#x548C;&#x81EA;&#x5DF1;&#x7684;&#x7236;&#x7C7B;
+&#x8FD4;&#x56DE;&#x503C;&#x53EF;&#x4EE5;&#x4F20;&#x81EA;&#x5DF1;&#x548C;&#x81EA;&#x5DF1;&#x7684;&#x5B50;&#x7C7B;</p>
+<pre><code class="lang-javaScript">  <span class="hljs-comment">// &#x57FA;&#x7840;&#x7C7B;&#x578B;</span>
+  type CallBack = (str: string | number) =&gt; string | number;
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">exec</span>(<span class="hljs-params">callBack: CallBack</span>): <span class="hljs-title">void</span> </span>{ }
+
+  type A = (str: string) =&gt; string;
+  <span class="hljs-keyword">let</span> a: A;
+  exec(a)  <span class="hljs-comment">// error</span>
+
+  type C = (str: string | number | boolean) =&gt; string | number | boolean;
+  <span class="hljs-keyword">let</span> c: C;
+  exec(c)  <span class="hljs-comment">// error</span>
+
+  type B = (str: string | number | boolean) =&gt; string;
+  <span class="hljs-keyword">let</span> b: B;
+  exec(b)  <span class="hljs-comment">// error</span>
+</code></pre>
+<p>&#x6CDB;&#x578B;&#x5728;&#x5224;&#x65AD;&#x517C;&#x5BB9;&#x6027;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F1A;&#x5148;&#x5224;&#x65AD;&#x5177;&#x4F53;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x8FDB;&#x884C;&#x517C;&#x5BB9;&#x6027;&#x5224;&#x65AD;
+&#x4E3A;&#x7A7A;&#x662F;&#x6CA1;&#x95EE;&#x9898;&#x7684;,&#x4F46;&#x662F;&#x63A5;&#x53E3;&#x5185;&#x90E8;&#x5904;&#x7406;&#x7684;&#x8BDD;&#x5C31;&#x4F1A;&#x62A5;&#x9519;</p>
+<pre><code class="lang-javaScript">interface Type&lt;T&gt; {
+  <span class="hljs-comment">// data: T</span>
+}
+<span class="hljs-keyword">let</span> x: Type&lt;string&gt;;
+<span class="hljs-keyword">let</span> y: Type&lt;number&gt;;
+x = y  <span class="hljs-comment">// true</span>
 </code></pre>
 
                                 
@@ -357,7 +470,7 @@
                 </a>
                 
                 
-                <a href="../generator.html" class="navigation navigation-next " aria-label="Next page: 迭代器和生成器">
+                <a href="protected.html" class="navigation navigation-next " aria-label="Next page: 类型保护">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -368,7 +481,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"函数的双向协变","level":"1.1.7","depth":2,"next":{"title":"迭代器和生成器","level":"1.2","depth":1,"path":"docs/generator.md","ref":"docs/generator.md","articles":[]},"previous":{"title":"接口","level":"1.1.6","depth":2,"path":"docs/typeScript/interface.md","ref":"docs/typeScript/interface.md","articles":[]},"dir":"ltr"},"config":{"plugins":["highlight","chapter-fold","livereload"],"styles":{"symbol":"./css/app.css"},"pluginsConfig":{"highlight":{},"chapter-fold":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"9787121324758","variables":{},"title":"常成的个人笔记","links":{"sharing":{"all":null,"facebook":null,"google":null,"twitter":null,"weibo":null}},"gitbook":"*","description":"个人笔记","extension":null},"file":{"path":"docs/typeScript/hssxxb.md","mtime":"2021-03-21T08:42:23.275Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-03-21T08:50:11.227Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"函数的双向协变","level":"1.1.7","depth":2,"next":{"title":"类型保护","level":"1.1.8","depth":2,"path":"docs/typeScript/protected.md","ref":"docs/typeScript/protected.md","articles":[]},"previous":{"title":"接口","level":"1.1.6","depth":2,"path":"docs/typeScript/interface.md","ref":"docs/typeScript/interface.md","articles":[]},"dir":"ltr"},"config":{"plugins":["highlight","chapter-fold","livereload"],"styles":{"symbol":"./css/app.css"},"pluginsConfig":{"highlight":{},"chapter-fold":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"9787121324758","variables":{},"title":"常成的个人笔记","links":{"sharing":{"all":null,"facebook":null,"google":null,"twitter":null,"weibo":null}},"gitbook":"*","description":"个人笔记","extension":null},"file":{"path":"docs/typeScript/hssxxb.md","mtime":"2021-03-26T07:30:32.205Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-04-13T14:06:27.519Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

@@ -112,3 +112,10 @@
   let cart: Cart = { list: [{ name: 'cc', age: 1 }] }
   let cart1: Cart = [1, 2, 3];
 ```
+泛型数组
+
+```javaScript
+type ArrayType<T extends string[]> = T
+const arr: ArrayType<['1', '2']> = ['1', '2']
+type ArrayType1 = typeof arr[number] // 1|2
+```

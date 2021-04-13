@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>函数 · 常成的个人笔记</title>
+        <title>类型保护 · 常成的个人笔记</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -51,10 +51,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="class.html" />
+    <link rel="next" href="ruleType.html" />
     
     
-    <link rel="prev" href="base.html" />
+    <link rel="prev" href="hssxxb.html" />
     
 
     </head>
@@ -110,7 +110,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.1.2" data-path="function.html">
+        <li class="chapter " data-level="1.1.2" data-path="function.html">
             
                 <a href="function.html">
             
@@ -188,7 +188,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.1.8" data-path="protected.html">
+        <li class="chapter active" data-level="1.1.8" data-path="protected.html">
             
                 <a href="protected.html">
             
@@ -327,7 +327,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >函数</a>
+        <a href="../.." >类型保护</a>
     </h1>
 </div>
 
@@ -344,35 +344,83 @@
                                 
                                 <!--
  * @Author: cc
- * @LastEditTime: 2021-03-21 16:42:15
+ * @LastEditTime: 2021-03-26 15:30:56
 -->
-<p>&#x51FD;&#x6570;</p>
-<pre><code class="lang-javaScript">type fnType = (x: string) =&gt; string
-type fnType2 = <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">T</span>&gt;</span>(x: T) =&gt; T
-
-const fnType3: fnType = (a) =&gt; {
-  return a
+<p>&#x7C7B;&#x578B;&#x4FDD;&#x62A4;&#x5C31;&#x662F;&#x4E00;&#x4E9B;&#x8868;&#x8FBE;&#x5F0F;&#xFF0C;&#x4ED6;&#x4EEC;&#x5728;&#x7F16;&#x8BD1;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x80FD;&#x901A;&#x8FC7;&#x7C7B;&#x578B;&#x4FE1;&#x606F;&#x786E;&#x4FDD;&#x67D0;&#x4E2A;&#x4F5C;&#x7528;&#x57DF;&#x7684;&#x53D8;&#x91CF;</p>
+<p>&#x7C7B;&#x578B;&#x4FDD;&#x62A4;&#x5C31;&#x662F;&#x80FD;&#x591F;&#x901A;&#x8FC7;&#x5173;&#x952E;&#x8BCD;&#x5224;&#x65AD;&#x51FA;&#x5206;&#x652F;&#x7684;&#x7C7B;&#x578B;</p>
+<p>&#x901A;&#x8FC7;typeOf instanceof for in&#x6765;&#x7F29;&#x5C0F;&#x8303;&#x56F4;</p>
+<p>&#x51FD;&#x6570;&#x53C2;&#x6570;&#x7684;&#x7C7B;&#x578B;&#x5224;&#x65AD;</p>
+<pre><code class="lang-javaScript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">double</span>(<span class="hljs-params">input: string | number</span>) </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> input === <span class="hljs-string">&apos;string&apos;</span>) {
+    <span class="hljs-built_in">console</span>.log(input)
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-built_in">console</span>.log(input)
+  }
 }
-fnType3(&apos;1&apos;)
-
-function ajax(url: string, method: string = &apos;GET&apos;): void { }
-ajax(&apos;/&apos;)
-
-function sum(...num: number[]) {
-  return num.reduce((prev, crrent) =&gt; prev + crrent, 0)
-}
-sum(1, 2, 3)
-</span></code></pre>
-<p>&#x51FD;&#x6570;&#x91CD;&#x8F7D;&#xFF1A;&#x7ECF;&#x5178;&#x6848;&#x4F8B;redux&#x4E2D;&#x7684;compose</p>
-<pre><code class="lang-javaScript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">attr</span>(<span class="hljs-params">a: string, b: number</span>): <span class="hljs-title">void</span>
-<span class="hljs-title">function</span> <span class="hljs-title">attr</span>(<span class="hljs-params">a: number, b: number</span>): <span class="hljs-title">void</span>
-<span class="hljs-title">function</span> <span class="hljs-title">attr</span>(<span class="hljs-params">val: any</span>): <span class="hljs-title">void</span> </span>{
-  <span class="hljs-built_in">console</span>.log(val)
-}
-attr(<span class="hljs-string">&apos;1&apos;</span>, <span class="hljs-number">2</span>)
-attr(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>)
-attr(<span class="hljs-string">&apos;1&apos;</span>, <span class="hljs-number">2</span>)
 </code></pre>
+<p>instanceof</p>
+<pre><code class="lang-javaScript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span> </span>{ }
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dog</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Animal</span> </span>{ }
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bird</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Animal</span> </span>{ }
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getName</span>(<span class="hljs-params">animal: Animal</span>) </span>{
+  <span class="hljs-keyword">if</span> (animal <span class="hljs-keyword">instanceof</span> Dog) {
+    <span class="hljs-built_in">console</span>.log(animal)
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (animal <span class="hljs-keyword">instanceof</span> Bird) {
+    <span class="hljs-built_in">console</span>.log(animal)
+  }
+}
+</code></pre>
+<p>null&#x4FDD;&#x62A4;</p>
+<pre><code class="lang-javaScript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getStr</span>(<span class="hljs-params">str: string | null</span>) </span>{
+  <span class="hljs-comment">//&#x6216;&#x8005;</span>
+  <span class="hljs-comment">// str = str || &apos;&apos;</span>
+  <span class="hljs-keyword">if</span> (str === <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;&apos;</span>;
+  <span class="hljs-keyword">return</span> str.charAt(<span class="hljs-number">0</span>)
+  <span class="hljs-comment">// &#x6216;&#x8005;</span>
+  <span class="hljs-comment">// str!.charAt(0)</span>
+}
+</code></pre>
+<p>&#x94FE;&#x8FD0;&#x7B97;&#x7B26;</p>
+<pre><code class="lang-javaScript"><span class="hljs-keyword">let</span> a = { b: <span class="hljs-number">2</span> }
+<span class="hljs-keyword">let</span> result = a?.b;
+<span class="hljs-comment">// a === null ?undefined:a.b</span>
+</code></pre>
+<p>for in &#x7C7B;&#x578B;&#x8BC6;&#x522B;</p>
+<pre><code class="lang-javaScript"> interface Bird {
+    swing: number
+  }
+  interface Dog {
+    leg: number
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getName</span>(<span class="hljs-params">x: Bird | Dog</span>) </span>{
+    <span class="hljs-keyword">if</span> (<span class="hljs-string">&apos;swing&apos;</span> <span class="hljs-keyword">in</span> x) {
+      <span class="hljs-built_in">console</span>.log(x)
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-string">&apos;leg&apos;</span> <span class="hljs-keyword">in</span> x) {
+      <span class="hljs-built_in">console</span>.log(x)
+    }
+  }
+</code></pre>
+<p>&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x7C7B;&#x578B;&#x4FDD;&#x62A4;</p>
+<pre><code class="lang-javaScript">  interface Bird {
+    swing: number
+  }
+  interface Dog {
+    leg: number
+  }
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getName</span>(<span class="hljs-params">x: Bird | Dog</span>) </span>{
+    <span class="hljs-keyword">if</span> (<span class="hljs-string">&apos;swing&apos;</span> <span class="hljs-keyword">in</span> x) {
+      <span class="hljs-built_in">console</span>.log(x)
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-string">&apos;leg&apos;</span> <span class="hljs-keyword">in</span> x) {
+      <span class="hljs-built_in">console</span>.log(x)
+    }
+  }
+</code></pre>
+<p>ant-design&#x6E90;&#x7801;&#x4E2D;Button typeof</p>
+<pre><code class="lang-javaScript"><span class="hljs-keyword">const</span> tuple = <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">T</span> <span class="hljs-attr">extends</span> <span class="hljs-attr">string</span>[]&gt;</span>(...args: T) =&gt; args
+const ButtonTypes = tuple(&apos;default&apos;, &apos;primary&apos;, &apos;ghost&apos;, &apos;dashed&apos;, &apos;link&apos;, &apos;text&apos;);
+export type ButtonType = typeof ButtonTypes[number];   // default|primary|ghost|dashed|link
+</span></code></pre>
 
                                 
                                 </section>
@@ -400,12 +448,12 @@ attr(<span class="hljs-string">&apos;1&apos;</span>, <span class="hljs-number">2
 
             
                 
-                <a href="base.html" class="navigation navigation-prev " aria-label="Previous page: 基础类型">
+                <a href="hssxxb.html" class="navigation navigation-prev " aria-label="Previous page: 函数的双向协变">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="class.html" class="navigation navigation-next " aria-label="Next page: 类">
+                <a href="ruleType.html" class="navigation navigation-next " aria-label="Next page: 条件类型">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -416,7 +464,7 @@ attr(<span class="hljs-string">&apos;1&apos;</span>, <span class="hljs-number">2
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"函数","level":"1.1.2","depth":2,"next":{"title":"类","level":"1.1.3","depth":2,"path":"docs/typeScript/class.md","ref":"docs/typeScript/class.md","articles":[]},"previous":{"title":"基础类型","level":"1.1.1","depth":2,"path":"docs/typeScript/base.md","ref":"docs/typeScript/base.md","articles":[]},"dir":"ltr"},"config":{"plugins":["highlight","chapter-fold","livereload"],"styles":{"symbol":"./css/app.css"},"pluginsConfig":{"highlight":{},"chapter-fold":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"9787121324758","variables":{},"title":"常成的个人笔记","links":{"sharing":{"all":null,"facebook":null,"google":null,"twitter":null,"weibo":null}},"gitbook":"*","description":"个人笔记","extension":null},"file":{"path":"docs/typeScript/function.md","mtime":"2021-03-21T08:42:16.117Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-04-13T14:06:27.519Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"类型保护","level":"1.1.8","depth":2,"next":{"title":"条件类型","level":"1.1.9","depth":2,"path":"docs/typeScript/ruleType.md","ref":"docs/typeScript/ruleType.md","articles":[]},"previous":{"title":"函数的双向协变","level":"1.1.7","depth":2,"path":"docs/typeScript/hssxxb.md","ref":"docs/typeScript/hssxxb.md","articles":[]},"dir":"ltr"},"config":{"plugins":["highlight","chapter-fold","livereload"],"styles":{"symbol":"./css/app.css"},"pluginsConfig":{"highlight":{},"chapter-fold":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"9787121324758","variables":{},"title":"常成的个人笔记","links":{"sharing":{"all":null,"facebook":null,"google":null,"twitter":null,"weibo":null}},"gitbook":"*","description":"个人笔记","extension":null},"file":{"path":"docs/typeScript/protected.md","mtime":"2021-03-26T07:30:57.519Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-04-13T14:06:27.519Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

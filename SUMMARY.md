@@ -1,6 +1,6 @@
 <!--
  * @Author: cc
- * @LastEditTime: 2021-03-21 16:49:00
+ * @LastEditTime: 2021-04-13 22:31:20
 -->
 # Summary
 * [目录](README.md)
@@ -11,6 +11,9 @@
   * [泛型](docs/typeScript/generic.md)
   * [接口](docs/typeScript/interface.md)
   * [函数的双向协变](docs/typeScript/hssxxb.md)
+  * [类型保护](docs/typeScript/protected.md)
+  * [条件类型](docs/typeScript/ruleType.md)
+  * [工具类型](docs/typeScript/utilsType.md)
   
 * [迭代器和生成器](docs/generator.md)
 * [对象](docs/object.md)

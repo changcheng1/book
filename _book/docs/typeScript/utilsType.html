@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>函数 · 常成的个人笔记</title>
+        <title>工具类型 · 常成的个人笔记</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -51,10 +51,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="class.html" />
+    <link rel="next" href="../generator.html" />
     
     
-    <link rel="prev" href="base.html" />
+    <link rel="prev" href="ruleType.html" />
     
 
     </head>
@@ -110,7 +110,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.1.2" data-path="function.html">
+        <li class="chapter " data-level="1.1.2" data-path="function.html">
             
                 <a href="function.html">
             
@@ -214,7 +214,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.1.10" data-path="utilsType.html">
+        <li class="chapter active" data-level="1.1.10" data-path="utilsType.html">
             
                 <a href="utilsType.html">
             
@@ -327,7 +327,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >函数</a>
+        <a href="../.." >工具类型</a>
     </h1>
 </div>
 
@@ -344,34 +344,61 @@
                                 
                                 <!--
  * @Author: cc
- * @LastEditTime: 2021-03-21 16:42:15
+ * @LastEditTime: 2021-04-13 22:30:16
 -->
-<p>&#x51FD;&#x6570;</p>
-<pre><code class="lang-javaScript">type fnType = (x: string) =&gt; string
-type fnType2 = <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">T</span>&gt;</span>(x: T) =&gt; T
-
-const fnType3: fnType = (a) =&gt; {
-  return a
+<p>Partila:&#x5C06;&#x6240;&#x6709;&#x7684;&#x5C5E;&#x6027;&#x53D8;&#x4E3A;&#x53EF;&#x9009;&#x7684;</p>
+<pre><code class="lang-javaScript">interface A {
+  name: string,
+  age: number
 }
-fnType3(&apos;1&apos;)
-
-function ajax(url: string, method: string = &apos;GET&apos;): void { }
-ajax(&apos;/&apos;)
-
-function sum(...num: number[]) {
-  return num.reduce((prev, crrent) =&gt; prev + crrent, 0)
+interface B {
+  nameB: string,
+  ageB: number
 }
-sum(1, 2, 3)
-</span></code></pre>
-<p>&#x51FD;&#x6570;&#x91CD;&#x8F7D;&#xFF1A;&#x7ECF;&#x5178;&#x6848;&#x4F8B;redux&#x4E2D;&#x7684;compose</p>
-<pre><code class="lang-javaScript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">attr</span>(<span class="hljs-params">a: string, b: number</span>): <span class="hljs-title">void</span>
-<span class="hljs-title">function</span> <span class="hljs-title">attr</span>(<span class="hljs-params">a: number, b: number</span>): <span class="hljs-title">void</span>
-<span class="hljs-title">function</span> <span class="hljs-title">attr</span>(<span class="hljs-params">val: any</span>): <span class="hljs-title">void</span> </span>{
-  <span class="hljs-built_in">console</span>.log(val)
+type keys&lt;T&gt; = keyof T; <span class="hljs-comment">// name|age &#x53EF;&#x4EE5;&#x62FF;&#x5230;&#x6240;&#x6709;&#x7684;key</span>
+<span class="hljs-comment">// type Partial_&lt;T&gt; = { [P in keyof T]?: T[P] }</span>
+type a = Partial&lt;A&gt;  <span class="hljs-comment">// &#x5C06;&#x6240;&#x6709;&#x5C5E;&#x6027;&#x53D8;&#x4E3A;&#x53EF;&#x9009;&#x7684; type a = {name?: string;age?: number}</span>
+<span class="hljs-comment">// &#x8054;&#x5408;&#x7C7B;&#x578B;</span>
+type b = Partial&lt;A &amp; B&gt;  <span class="hljs-comment">//  {name?: string;age?: number;nameB?: string;ageB?: number;}</span>
+</code></pre>
+<p>DeepPartial:&#x9012;&#x5F52;&#x904D;&#x5386;&#x5C06;&#x6240;&#x6709;&#x5C5E;&#x6027;&#x8F6C;&#x6362;&#x4E3A;&#x53EF;&#x9009;</p>
+<pre><code class="lang-javaScript">type &lt;T&gt; = {
+  [U <span class="hljs-keyword">in</span> keyof T]: T[U] extends object ? DeepPartial&lt;T[U]&gt; : T[U]
 }
-attr(<span class="hljs-string">&apos;1&apos;</span>, <span class="hljs-number">2</span>)
-attr(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>)
-attr(<span class="hljs-string">&apos;1&apos;</span>, <span class="hljs-number">2</span>)
+</code></pre>
+<p>Required:&#x5C06;&#x6240;&#x6709;&#x5C5E;&#x6027;&#x90FD;&#x53D8;&#x4E3A;&#x5FC5;&#x9009;</p>
+<pre><code class="lang-javaScript"><span class="hljs-comment">//&#x5B9E;&#x73B0;&#x539F;&#x7406;</span>
+<span class="hljs-comment">//type Required_&lt;T&gt; = { [P in keyof T]-?: T[P] }</span>
+type DDD = {
+  name?: string,
+  age?: number
+}
+type E = Required&lt;DDD&gt; <span class="hljs-comment">// {name:string,age:number}</span>
+</code></pre>
+<p>ReadOnly:&#x5C06;&#x6240;&#x6709;&#x5C5E;&#x6027;&#x90FD;&#x53D8;&#x4E3A;&#x53EA;&#x8BFB;&#x7684;</p>
+<pre><code class="lang-javaScript"><span class="hljs-comment">// &#x5B9E;&#x73B0;&#x539F;&#x7406;</span>
+<span class="hljs-comment">// type Readonly_&lt;T&gt; = {readonly [U in keyof T]: T[U]}</span>
+type EEE = {
+  name: string
+}
+type e = Readonly&lt;EEE&gt;  <span class="hljs-comment">//  {readonly name: string;}</span>
+</code></pre>
+<p>Pick:&#x83B7;&#x53D6;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x6784;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7C7B;&#x578B;</p>
+<pre><code class="lang-javaScript"><span class="hljs-comment">// &#x5B9E;&#x73B0;&#x539F;&#x7406;</span>
+<span class="hljs-comment">// type Pick&lt;T, K extends keyof T&gt; = {[P in K]: T[P];};</span>
+interface Person {
+  name: string,
+  age: number,
+  gender: number
+}
+type pickPerson = Pick&lt;Person, <span class="hljs-string">&apos;name&apos;</span> | <span class="hljs-string">&apos;age&apos;</span>&gt;; 
+<span class="hljs-comment">// type pickPerson = {name: string;age: number;}</span>
+</code></pre>
+<p>Pick&#x548C;Extract&#x7684;&#x533A;&#x522B;</p>
+<p><code>Pick&#x6784;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x5BF9;&#x8C61;,Extract&#x662F;&#x5BFB;&#x627E;&#x5305;&#x542B;&#x7684;&#x76F8;&#x540C;&#x7C7B;&#x578B;</code></p>
+<pre><code class="lang-javaScript"><span class="hljs-comment">// Extract&#x5B9E;&#x73B0;&#x539F;&#x7406;</span>
+<span class="hljs-comment">//type Extract_&lt;T, U&gt; = T extends U ? T : never;</span>
+type R5 = Extract&lt;string | number | boolean, number&gt; <span class="hljs-comment">// number</span>
 </code></pre>
 
                                 
@@ -400,12 +427,12 @@ attr(<span class="hljs-string">&apos;1&apos;</span>, <span class="hljs-number">2
 
             
                 
-                <a href="base.html" class="navigation navigation-prev " aria-label="Previous page: 基础类型">
+                <a href="ruleType.html" class="navigation navigation-prev " aria-label="Previous page: 条件类型">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="class.html" class="navigation navigation-next " aria-label="Next page: 类">
+                <a href="../generator.html" class="navigation navigation-next " aria-label="Next page: 迭代器和生成器">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -416,7 +443,7 @@ attr(<span class="hljs-string">&apos;1&apos;</span>, <span class="hljs-number">2
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"函数","level":"1.1.2","depth":2,"next":{"title":"类","level":"1.1.3","depth":2,"path":"docs/typeScript/class.md","ref":"docs/typeScript/class.md","articles":[]},"previous":{"title":"基础类型","level":"1.1.1","depth":2,"path":"docs/typeScript/base.md","ref":"docs/typeScript/base.md","articles":[]},"dir":"ltr"},"config":{"plugins":["highlight","chapter-fold","livereload"],"styles":{"symbol":"./css/app.css"},"pluginsConfig":{"highlight":{},"chapter-fold":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"9787121324758","variables":{},"title":"常成的个人笔记","links":{"sharing":{"all":null,"facebook":null,"google":null,"twitter":null,"weibo":null}},"gitbook":"*","description":"个人笔记","extension":null},"file":{"path":"docs/typeScript/function.md","mtime":"2021-03-21T08:42:16.117Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-04-13T14:06:27.519Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"工具类型","level":"1.1.10","depth":2,"next":{"title":"迭代器和生成器","level":"1.2","depth":1,"path":"docs/generator.md","ref":"docs/generator.md","articles":[]},"previous":{"title":"条件类型","level":"1.1.9","depth":2,"path":"docs/typeScript/ruleType.md","ref":"docs/typeScript/ruleType.md","articles":[]},"dir":"ltr"},"config":{"plugins":["highlight","chapter-fold","livereload"],"styles":{"symbol":"./css/app.css"},"pluginsConfig":{"highlight":{},"chapter-fold":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"9787121324758","variables":{},"title":"常成的个人笔记","links":{"sharing":{"all":null,"facebook":null,"google":null,"twitter":null,"weibo":null}},"gitbook":"*","description":"个人笔记","extension":null},"file":{"path":"docs/typeScript/utilsType.md","mtime":"2021-04-13T14:30:30.012Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-04-13T14:06:27.519Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
