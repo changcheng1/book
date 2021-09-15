@@ -1,9 +1,31 @@
 <!--
- * @Author: cc
- * @LastEditTime: 2021-04-13 22:31:20
+ * @Author: changcheng
+ * @LastEditTime: 2021-09-15 17:33:00
 -->
 # Summary
-* [目录](README.md)
+* [防抖和节流](docs/debounce.md)
+* [浏览器渲染原理](docs/browser.md)
+* [迭代器和生成器](docs/generator.md)
+* [对象](docs/object.md)
+* [类](docs/class.md)
+* [继承](docs/instance.md)
+* [Thunk](docs/thunk.md)
+* [fetch](docs/fetch.md)
+* [函数的柯里化](docs/curring.md)
+* [事件循环](docs/eventLoop.md)
+* [盒模型](docs/flex.md)
+* [函数设计模式](docs/fun.md)
+* [跨域](docs/jsonp.md)
+* [网页相关](docs/netWork.md)
+* [重绘回流](docs/reflow.md)
+* [symbol](docs/symbol.md)
+* [类型检查](docs/typeOf.md)
+* [Thunk](docs/thunk.md)
+* [Tcp](docs/tcp.md)
+* [数据结构](docs/data.md)
+* [原型链](docs/prototype.md)
+
+* [TypeScript](docs/typeScript/base.md)
   * [基础类型](docs/typeScript/base.md)
   * [函数](docs/typeScript/function.md)
   * [类](docs/typeScript/class.md)
@@ -14,9 +36,27 @@
   * [类型保护](docs/typeScript/protected.md)
   * [条件类型](docs/typeScript/ruleType.md)
   * [工具类型](docs/typeScript/utilsType.md)
+  * [代理模式](docs/typeScript/proxy.md)
+
+* [Es6](docs/typeScript/base.md)
+  * [解构赋值](docs/es6/jiegou.md)
+  * [array](docs/es6/array.md)
+  * [string](docs/es6/string.md)
+  * [class](docs/es6/class.md)
+  * [const & let](docs/es6/const&let.md)
+  * [decorators](docs/es6/decorators.md)
+  * [function](docs/es6/function.md)
+  * [generator](docs/es6/generator.md)
+  * [iterator](docs/es6/iterator.md)
+  * [模块化](docs/es6/module.md)
+  * [Number&Math](docs/es6/Number&Math.md)
+  * [object](docs/es6/object.md)
+  * [promise](docs/es6/promise.md)
+  * [proxy](docs/es6/proxy.md)
+  * [Reflect](docs/es6/Reflect.md)
+  * [set&map](docs/es6/set&map.md)
+  * [string&Method](docs/es6/string&Method.md)
+  * [symbol](docs/es6/symbol.md)
+  * [defineProperty](docs/es6/defineProperty.md)
+
   
-* [迭代器和生成器](docs/generator.md)
-* [对象](docs/object.md)
-* [类](docs/class.md)
-* [继承](docs/instance.md)
-* [Thunk](docs/thunk.md)

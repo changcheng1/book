@@ -1,6 +1,6 @@
 <!--
  * @Author: cc
- * @LastEditTime: 2021-03-21 16:42:08
+ * @LastEditTime: 2021-09-15 14:17:28
 -->
 any类型:如果定义为any，跟js差不多，不进行类型检查
 

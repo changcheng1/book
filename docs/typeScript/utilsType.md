@@ -1,9 +1,9 @@
 <!--
  * @Author: cc
- * @LastEditTime: 2021-04-13 22:30:16
+ * @LastEditTime: 2021-04-15 20:50:25
 -->
 
-Partila:将所有的属性变为可选的
+Partial:将所有的属性变为可选的
 
 ```javaScript
 interface A {
